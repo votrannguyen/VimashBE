@@ -26,7 +26,7 @@ public class DeliveryEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "delivery_id")
     @JsonProperty("deliveryId")
-    private Integer deliveryId;
+    private Long deliveryId;
 
     //Delivery Name
     @Column(name = "delivery_name")
@@ -108,18 +108,19 @@ public class DeliveryEntity implements Serializable {
     @JsonProperty("customerId")
     private Integer customerId;
 
-    //Flg Deivery
-    @Column(name = "flg_delivery")
-    @JsonProperty("flgDelivery")
-    private String flgDelivery = "0";
+    //Delete column
+    @Column(name = "del_flg")
+    @JsonProperty("delFlg")
+    private String delFlg = "0";
 
     public DeliveryEntity() {
     }
 
-    public DeliveryEntity(Integer deliveryId, String deliveryName, String telephone, String faxNumber, String zipCode,
+    //Contructor có Id
+    public DeliveryEntity(Long deliveryId, String deliveryName, String telephone, String faxNumber, String zipCode,
                           String address1, String address2, String address3, String address4, String createBy, Date createDate,
                           String updateBy, Date updateDate, String routeCode, String courseCode, String description,
-                          Integer customerId, String flgDelivery) {
+                          Integer customerId, String delFlg) {
         this.deliveryId = deliveryId;
         this.deliveryName = deliveryName;
         this.telephone = telephone;
@@ -137,14 +138,37 @@ public class DeliveryEntity implements Serializable {
         this.courseCode = courseCode;
         this.description = description;
         this.customerId = customerId;
-        this.flgDelivery = flgDelivery;
+        this.delFlg = delFlg;
     }
 
-    public Integer getDeliveryId() {
+    public DeliveryEntity(String deliveryName, String telephone, String faxNumber, String zipCode, String address1,
+                          String address2, String address3, String address4, String createBy, Date createDate,
+                          String updateBy, Date updateDate, String routeCode, String courseCode, String description,
+                          Integer customerId, String delFlg) {
+        this.deliveryName = deliveryName;
+        this.telephone = telephone;
+        this.faxNumber = faxNumber;
+        this.zipCode = zipCode;
+        this.address1 = address1;
+        this.address2 = address2;
+        this.address3 = address3;
+        this.address4 = address4;
+        this.createBy = createBy;
+        this.createDate = createDate;
+        this.updateBy = updateBy;
+        this.updateDate = updateDate;
+        this.routeCode = routeCode;
+        this.courseCode = courseCode;
+        this.description = description;
+        this.customerId = customerId;
+        this.delFlg = delFlg;
+    }
+
+    public Long getDeliveryId() {
         return deliveryId;
     }
 
-    public void setDeliveryId(Integer deliveryId) {
+    public void setDeliveryId(Long deliveryId) {
         this.deliveryId = deliveryId;
     }
 
@@ -276,11 +300,11 @@ public class DeliveryEntity implements Serializable {
         this.customerId = customerId;
     }
 
-    public String getFlgDelivery() {
-        return flgDelivery;
+    public String getDelFlg() {
+        return delFlg;
     }
 
-    public void setFlgDelivery(String flgDelivery) {
-        this.flgDelivery = flgDelivery;
+    public void setdelFlg(String delFlg) {
+        this.delFlg = delFlg;
     }
 }

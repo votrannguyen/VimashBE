@@ -27,7 +27,7 @@ public class CustomerEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
     @JsonProperty("customerId")
-    private Integer customerId;
+    private Long customerId;
 
     //Customer Name
     @Column(name = "customer_name")
@@ -105,17 +105,18 @@ public class CustomerEntity implements Serializable {
     private String description;
 
     //Flg Customer
-    @Column(name = "flg_customer")
-    @JsonProperty("flgCustomer")
-    private String flgCustomer = "0";
+    @Column(name = "del_flg")
+    @JsonProperty("delFlg")
+    private String delFlg = "0";
 
     public CustomerEntity() {
     }
 
-    public CustomerEntity(Integer customerId, String customerName, String createBy, Date createDate, String updateBy,
+    //Contructor có ID
+    public CustomerEntity(Long customerId, String customerName, String createBy, Date createDate, String updateBy,
                           Date updateDate, String routeCode, String courseCode, String telephone, String faxNumber,
                           String zipCode, String address1, String address2, String address3, String address4,
-                          String description, String flgCustomer) {
+                          String description, String delFlg) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.createBy = createBy;
@@ -132,14 +133,37 @@ public class CustomerEntity implements Serializable {
         this.address3 = address3;
         this.address4 = address4;
         this.description = description;
-        this.flgCustomer = flgCustomer;
+        this.delFlg = delFlg;
     }
 
-    public Integer getCustomerId() {
+    //Contructor không có Id
+    public CustomerEntity(String customerName, String createBy, Date createDate, String updateBy, Date updateDate,
+                          String routeCode, String courseCode, String telephone, String faxNumber, String zipCode,
+                          String address1, String address2, String address3, String address4, String description,
+                          String delFlg) {
+        this.customerName = customerName;
+        this.createBy = createBy;
+        this.createDate = createDate;
+        this.updateBy = updateBy;
+        this.updateDate = updateDate;
+        this.routeCode = routeCode;
+        this.courseCode = courseCode;
+        this.telephone = telephone;
+        this.faxNumber = faxNumber;
+        this.zipCode = zipCode;
+        this.address1 = address1;
+        this.address2 = address2;
+        this.address3 = address3;
+        this.address4 = address4;
+        this.description = description;
+        this.delFlg = delFlg;
+    }
+
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Integer customerId) {
+    public void setCustomerId(Long customerId) {
         this.customerId = customerId;
     }
 
@@ -263,11 +287,11 @@ public class CustomerEntity implements Serializable {
         this.description = description;
     }
 
-    public String getFlgCustomer() {
-        return flgCustomer;
+    public String getDelFlg() {
+        return delFlg;
     }
 
-    public void setFlgCustomer(String flgCustomer) {
-        this.flgCustomer = flgCustomer;
+    public void setDelFlg(String delFlg) {
+        this.delFlg = delFlg;
     }
 }
