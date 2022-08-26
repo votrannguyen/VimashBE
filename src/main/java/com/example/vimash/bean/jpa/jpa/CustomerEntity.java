@@ -295,3 +295,4 @@ public class CustomerEntity implements Serializable {
         this.delFlg = delFlg;
     }
 }
+
