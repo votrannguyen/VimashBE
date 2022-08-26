@@ -34,6 +34,11 @@ public class CustomerEntity implements Serializable {
     @JsonProperty("customerName")
     private String customerName;
 
+    //Customer Code
+    @Column(name = "customer_code")
+    @JsonProperty("customerCode")
+    private String customerCode;
+
     //Create By
     @Column(name = "create_by")
     @JsonProperty("createBy")
@@ -113,12 +118,13 @@ public class CustomerEntity implements Serializable {
     }
 
     //Contructor có ID
-    public CustomerEntity(Long customerId, String customerName, Integer createBy, Date createDate, Integer updateBy,
+    public CustomerEntity(Long customerId, String customerName, String customerCode, Integer createBy, Date createDate, Integer updateBy,
                           Date updateDate, String routeCode, String courseCode, String telephone, String faxNumber,
                           String zipCode, String address1, String address2, String address3, String address4,
                           String description, String delFlg) {
         this.customerId = customerId;
         this.customerName = customerName;
+        this.customerCode = customerCode;
         this.createBy = createBy;
         this.createDate = createDate;
         this.updateBy = updateBy;
@@ -137,10 +143,11 @@ public class CustomerEntity implements Serializable {
     }
 
     //Contructor không có Id
-    public CustomerEntity(String customerName, Integer createBy, Date createDate, Integer updateBy, Date updateDate,
+    public CustomerEntity(String customerCode,String customerName, Integer createBy, Date createDate, Integer updateBy, Date updateDate,
                           String routeCode, String courseCode, String telephone, String faxNumber, String zipCode,
                           String address1, String address2, String address3, String address4, String description,
                           String delFlg) {
+        this.customerCode = customerCode;
         this.customerName = customerName;
         this.createBy = createBy;
         this.createDate = createDate;
