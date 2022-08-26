@@ -20,7 +20,7 @@ import java.util.Date;
 
 @Entity
 @Table(name= "m_route")
-public class RouteEntiry implements Serializable {
+public class RouteEntity implements Serializable {
 
     //Route Code
     @Id
@@ -69,11 +69,11 @@ public class RouteEntiry implements Serializable {
     @JsonProperty("updateDate")
     private Date updateDate;
 
-    public RouteEntiry() {
+    public RouteEntity() {
     }
 
     //Contructor có Id
-    public RouteEntiry(String routeCode, Long companyId, String routeName, String notes, String delFlg, Integer createBy,
+    public RouteEntity(String routeCode, Long companyId, String routeName, String notes, String delFlg, Integer createBy,
                        Date createDate, Integer updateBy, Date updateDate) {
         this.routeCode = routeCode;
         this.companyId = companyId;
@@ -87,7 +87,7 @@ public class RouteEntiry implements Serializable {
     }
 
     //Contructor không có Id
-    public RouteEntiry(Long companyId, String routeName, String notes, String delFlg, Integer createBy, Date createDate,
+    public RouteEntity(Long companyId, String routeName, String notes, String delFlg, Integer createBy, Date createDate,
                        Integer updateBy, Date updateDate) {
         this.companyId = companyId;
         this.routeName = routeName;
