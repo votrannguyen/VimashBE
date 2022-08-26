@@ -12,10 +12,10 @@ public class CourseEntity implements Serializable {
 
     //Route Code
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "course_code")
     @JsonProperty(value="courseCode")
-    private Long courseCode;
+    private String courseCode;
 
     //Company Id
     @Column(name = "company_id")
@@ -30,7 +30,7 @@ public class CourseEntity implements Serializable {
     //Course Name
     @Column(name = "course_name")
     @JsonProperty(value="courseName")
-    private Long courseName;
+    private String courseName;
 
     //Note
     @Column(name = "notes")
@@ -45,7 +45,7 @@ public class CourseEntity implements Serializable {
     //Create By
     @Column(name = "create_by")
     @JsonProperty("createBy")
-    private String createBy;
+    private Integer createBy;
 
     //Create Date
     @Column(name = "create_date")
@@ -55,7 +55,7 @@ public class CourseEntity implements Serializable {
     //Update By
     @Column(name = "update_by")
     @JsonProperty("updateBy")
-    private String updateBy;
+    private Integer updateBy;
 
     //Update Date
     @Column(name = "update_date")
@@ -66,8 +66,8 @@ public class CourseEntity implements Serializable {
     }
 
     //Contrutor có Id
-    public CourseEntity(Long courseCode, Long companyId, String routeCode, Long courseName, String notes, String delFlg,
-                        String createBy, Date createDate, String updateBy, Date updateDate) {
+    public CourseEntity(String courseCode, Long companyId, String routeCode, String courseName, String notes, String delFlg,
+                        Integer createBy, Date createDate, Integer updateBy, Date updateDate) {
         this.courseCode = courseCode;
         this.companyId = companyId;
         this.routeCode = routeCode;
@@ -81,8 +81,8 @@ public class CourseEntity implements Serializable {
     }
 
     //Contrutor không có Id
-    public CourseEntity(Long companyId, String routeCode, Long courseName, String notes, String delFlg, String createBy,
-                        Date createDate, String updateBy, Date updateDate) {
+    public CourseEntity(Long companyId, String routeCode, String courseName, String notes, String delFlg, Integer createBy,
+                        Date createDate, Integer updateBy, Date updateDate) {
         this.companyId = companyId;
         this.routeCode = routeCode;
         this.courseName = courseName;
@@ -91,6 +91,86 @@ public class CourseEntity implements Serializable {
         this.createBy = createBy;
         this.createDate = createDate;
         this.updateBy = updateBy;
+        this.updateDate = updateDate;
+    }
+
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
+    }
+
+    public Long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
+    }
+
+    public String getRouteCode() {
+        return routeCode;
+    }
+
+    public void setRouteCode(String routeCode) {
+        this.routeCode = routeCode;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public String getDelFlg() {
+        return delFlg;
+    }
+
+    public void setDelFlg(String delFlg) {
+        this.delFlg = delFlg;
+    }
+
+    public Integer getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(Integer createBy) {
+        this.createBy = createBy;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Integer getUpdateBy() {
+        return updateBy;
+    }
+
+    public void setUpdateBy(Integer updateBy) {
+        this.updateBy = updateBy;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
 }
