@@ -24,10 +24,10 @@ public class RouteEntiry implements Serializable {
 
     //Route Code
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "route_code")
     @JsonProperty(value="routeCode")
-    private Long routeId;
+    private String routeCode;
 
     //Company Id
     @Column(name = "company_id")
@@ -52,7 +52,7 @@ public class RouteEntiry implements Serializable {
     //Create By
     @Column(name = "create_by")
     @JsonProperty("createBy")
-    private String createBy;
+    private Integer createBy;
 
     //Create Date
     @Column(name = "create_date")
@@ -62,7 +62,7 @@ public class RouteEntiry implements Serializable {
     //Update By
     @Column(name = "update_by")
     @JsonProperty("updateBy")
-    private String updateBy;
+    private Integer updateBy;
 
     //Update Date
     @Column(name = "update_date")
@@ -73,9 +73,9 @@ public class RouteEntiry implements Serializable {
     }
 
     //Contructor có Id
-    public RouteEntiry(Long routeId, Long companyId, String routeName, String notes, String delFlg, String createBy,
-                       Date createDate, String updateBy, Date updateDate) {
-        this.routeId = routeId;
+    public RouteEntiry(String routeCode, Long companyId, String routeName, String notes, String delFlg, Integer createBy,
+                       Date createDate, Integer updateBy, Date updateDate) {
+        this.routeCode = routeCode;
         this.companyId = companyId;
         this.routeName = routeName;
         this.notes = notes;
@@ -87,8 +87,8 @@ public class RouteEntiry implements Serializable {
     }
 
     //Contructor không có Id
-    public RouteEntiry(Long companyId, String routeName, String notes, String delFlg, String createBy, Date createDate,
-                       String updateBy, Date updateDate) {
+    public RouteEntiry(Long companyId, String routeName, String notes, String delFlg, Integer createBy, Date createDate,
+                       Integer updateBy, Date updateDate) {
         this.companyId = companyId;
         this.routeName = routeName;
         this.notes = notes;
@@ -99,12 +99,12 @@ public class RouteEntiry implements Serializable {
         this.updateDate = updateDate;
     }
 
-    public Long getRouteId() {
-        return routeId;
+    public String getRouteCode() {
+        return routeCode;
     }
 
-    public void setRouteId(Long routeId) {
-        this.routeId = routeId;
+    public void setRouteId(String routeCode) {
+        this.routeCode = routeCode;
     }
 
     public Long getCompanyId() {
@@ -139,11 +139,11 @@ public class RouteEntiry implements Serializable {
         this.delFlg = delFlg;
     }
 
-    public String getCreateBy() {
+    public Integer getCreateBy() {
         return createBy;
     }
 
-    public void setCreateBy(String createBy) {
+    public void setCreateBy(Integer createBy) {
         this.createBy = createBy;
     }
 
@@ -155,11 +155,11 @@ public class RouteEntiry implements Serializable {
         this.createDate = createDate;
     }
 
-    public String getUpdateBy() {
+    public Integer getUpdateBy() {
         return updateBy;
     }
 
-    public void setUpdateBy(String updateBy) {
+    public void setUpdateBy(Integer updateBy) {
         this.updateBy = updateBy;
     }
 

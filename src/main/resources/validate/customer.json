@@ -1,0 +1,84 @@
+{
+  "alias": "customer.info",
+  "checks": [
+    {
+      "id": "customerName",
+      "required": "0",
+      "maxLength": 100
+    },
+    {
+      "id": "createBy",
+      "required": "0",
+      "maxLength": 6,
+      "number": "\\d+"
+    },
+    {
+      "id": "createDate",
+      "required": "0",
+      "maxLength": 7,
+      "isDateTime": true
+    },
+    {
+      "id": "updateBy",
+      "required": "0",
+      "maxLength": 6,
+      "number": "\\d+"
+    },
+    {
+      "id": "updateDate",
+      "required": "0",
+      "maxLength": 7,
+      "isDateTime": true
+    },
+    {
+      "id": "routeCode",
+      "required": "0",
+      "maxLength": 3
+    },
+    {
+      "id": "courseCode",
+      "required": "0",
+      "maxLength": 3
+    },
+    {
+      "id": "telephone",
+      "required": "0",
+      "maxLength": 255
+    },
+    {
+      "id": "zipcode",
+      "required": "0",
+      "maxLength": 255
+    },
+    {
+      "id": "address1",
+      "required": "0",
+      "maxLength": 50
+    },
+    {
+      "id": "address2",
+      "required": "0",
+      "maxLength": 50
+    },
+    {
+      "id": "address3",
+      "required": "0",
+      "maxLength": 50
+    },
+    {
+      "id": "description",
+      "required": "0",
+      "maxLength": 255
+    },
+    {
+      "id": "faxNumber",
+      "required": "0",
+      "maxLength": 15
+    },
+    {
+      "id": "delFlg",
+      "required": "0",
+      "maxLength": 1
+    }
+  ]
+}
