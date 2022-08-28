@@ -14,7 +14,7 @@ public class DataUtil {
 
 
     public static boolean isEmpty(String value) {
-        if (null == value || 0 == value.length()) {
+        if (null == value || 0 == value.trim().length()) {
             return true;
         }
         return false;

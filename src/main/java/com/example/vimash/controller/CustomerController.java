@@ -11,17 +11,22 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
+@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
 public class CustomerController {
 
     @Resource
     private CustomerService customerService;
     @RequestMapping(value = "/api/customer", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<ResultBean> getCustomer(@RequestParam (defaultValue = "") String name
-            ,@RequestParam (defaultValue = "0") String code,@RequestParam (defaultValue = "14")Integer size) {
+    public ResponseEntity<ResultBean> getCustomer(
+            @RequestParam (defaultValue = "") String name
+            ,@RequestParam (defaultValue = "") String code1
+            ,@RequestParam (defaultValue = "")String code2
+            ,@RequestParam (defaultValue = "10")Integer size
+            ,@RequestParam (defaultValue = "1")Integer page) {
         ResultBean resultBean = null;
         try {
-            resultBean = customerService.getCustomer(name, code, size);
+            resultBean = customerService.getCustomer(name, code1, code2, page, size);
         } catch (ApiValidateException e) {
             resultBean = new ResultBean(e.getCode(), e.getField(), e.getMessage());
             return new ResponseEntity<ResultBean>(resultBean, HttpStatus.BAD_REQUEST);
@@ -43,7 +48,8 @@ public class CustomerController {
         catch (ApiValidateException e) {
             resultBean = new ResultBean(e.getCode(), e.getField(), e.getMessage());
             return new ResponseEntity<ResultBean>(resultBean, HttpStatus.BAD_REQUEST);
-        }catch (Exception e) {
+        }catch (Exception ex) {
+            resultBean = new ResultBean(null,null,ex.getMessage());
             return new ResponseEntity<ResultBean>(resultBean, HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<ResultBean>(resultBean, HttpStatus.OK);

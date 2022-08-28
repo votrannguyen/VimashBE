@@ -1,51 +1,32 @@
-package com.example.vimash.bean.jpa.jpa;
+package com.example.vimash.bean.jpa.jpa.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * [OVERVIEW] : T  Customer Info Of Entity.
- *
- * @author: (VIMASH)
- * @version: 1.0
- * @History
- * [NUMBER]  [VER]     [DATE]          [USER]             [CONTENT]
- * --------------------------------------------------------------------------
- * 001       1.0       2022/08/24      (VIMASH)         Create new
- */
-
-
-@Entity
-@Table(name = "m_customer")
-public class CustomerEntity implements Serializable {
-
+public class CustomerResponse implements Serializable {
     //Customer Id
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customer_id")
     @JsonProperty("customerId")
     private Long customerId;
 
     // customer_code
-    @Column(name = "customer_code")
     @JsonProperty("customerCode")
     private String customerCode;
 
     //Customer Name
-    @Column(name = "customer_name")
     @JsonProperty("customerName")
     private String customerName;
 
     //Create By
-    @Column(name = "create_by")
     @JsonProperty("createBy")
     private Integer createBy;
 
     //Create Date
-    @Column(name = "create_date")
     @JsonProperty("createDate")
     private Date createDate;
 
@@ -55,70 +36,58 @@ public class CustomerEntity implements Serializable {
     private Integer updateBy;
 
     //Update Date
-    @Column(name = "update_date")
     @JsonProperty("updateDate")
     private Date updateDate;
 
     //Route Code
-    @Column(name = "route_code")
     @JsonProperty("routeCode")
     private String routeCode;
 
     //Course Code
-    @Column(name = "course_code")
     @JsonProperty("courseCode")
     private String courseCode;
 
     //Telephone
-    @Column(name = "telephone")
     @JsonProperty("telephone")
     private String telephone;
 
     //Fax Number
-    @Column(name = "fax_number")
     @JsonProperty("faxNumber")
     private String faxNumber;
 
     //Zip Code
-    @Column(name = "zip_code")
     @JsonProperty("zipCode")
     private String zipCode;
 
     //Address 1
-    @Column(name = "address1")
     @JsonProperty("address1")
     private String address1;
 
     //Address 2
-    @Column(name = "address2")
     @JsonProperty("address2")
     private String address2;
 
     //Address 3
-    @Column(name = "address3")
     @JsonProperty("address3")
     private String address3;
 
     //Address 4
-    @Column(name = "address4")
     @JsonProperty("address4")
     private String address4;
 
     //Description
-    @Column(name = "description")
     @JsonProperty("description")
     private String description;
 
     //Flg Customer
-    @Column(name = "del_flg")
     @JsonProperty("delFlg")
     private String delFlg = "0";
 
-    public CustomerEntity() {
+    public CustomerResponse() {
     }
 
     //Contructor có ID
-    public CustomerEntity(Long customerId, String customerName, Integer createBy, Date createDate, Integer updateBy,
+    public CustomerResponse(Long customerId, String customerName, Integer createBy, Date createDate, Integer updateBy,
                           Date updateDate, String routeCode, String courseCode, String telephone, String faxNumber,
                           String zipCode, String address1, String address2, String address3, String address4,
                           String description, String delFlg) {
@@ -142,7 +111,7 @@ public class CustomerEntity implements Serializable {
     }
 
     //Contructor không có Id
-    public CustomerEntity(String customerName, Integer createBy, Date createDate, Integer updateBy, Date updateDate,
+    public CustomerResponse(String customerName, Integer createBy, Date createDate, Integer updateBy, Date updateDate,
                           String routeCode, String courseCode, String telephone, String faxNumber, String zipCode,
                           String address1, String address2, String address3, String address4, String description,
                           String delFlg) {
@@ -300,4 +269,3 @@ public class CustomerEntity implements Serializable {
         this.delFlg = delFlg;
     }
 }
-

@@ -5,5 +5,5 @@ import com.example.vimash.bean.jpa.jpa.CustomerEntity;
 import java.util.List;
 
 public interface CustomerDao {
-    List<CustomerEntity> getAllCustomer(String name, String code, Integer size);
+    List<CustomerEntity> getAllCustomer(String name, String code1, String code2, Integer page, Integer size);
 }
