@@ -15,20 +15,18 @@
     {
       "id": "createDate",
       "required": "0",
-      "maxLength": 7,
-      "isDateTime": true
+      "maxLength": 10
     },
     {
       "id": "updateBy",
       "required": "0",
-      "maxLength": 6,
+      "maxLength": 10,
       "number": "\\d+"
     },
     {
       "id": "updateDate",
       "required": "0",
-      "maxLength": 7,
-      "isDateTime": true
+      "maxLength": 10
     },
     {
       "id": "routeCode",

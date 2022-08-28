@@ -56,7 +56,7 @@ public class ValidateData {
         BufferedReader red = null;
 
         try {
-            red = new BufferedReader(new FileReader("C:\\Users\\PC\\Desktop\\vimash\\vimash\\src\\main\\resources\\validate\\" + fileName));
+            red = new BufferedReader(new FileReader("D:\\HOC-TAP\\spring-boot\\VimashBE\\src\\main\\resources\\validate\\" + fileName));
             return new Gson().fromJson(red, ItemValidate.class);
         } catch (FileNotFoundException e) {
             return null;

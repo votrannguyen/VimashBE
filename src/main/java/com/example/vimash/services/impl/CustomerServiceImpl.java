@@ -23,10 +23,10 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerDao customerDao;
 
     @Override
-    public ResultBean getCustomer(String name, String code, Integer size) throws ApiValidateException, Exception {
+    public ResultBean getCustomer(String name, String code1, String code2, Integer page, Integer size) throws ApiValidateException, Exception {
 
         List<CustomerEntity> customerEntityList = null;
-        customerEntityList = customerDao.getAllCustomer(name.trim(),code.trim(),size);
+        customerEntityList = customerDao.getAllCustomer(name.trim(),code1.trim(), code2.trim(), page, size);
 
         return new ResultBean(customerEntityList, Constants.STATUS_OK, Constants.MESSAGE_OK);
     }
@@ -35,6 +35,6 @@ public class CustomerServiceImpl implements CustomerService {
     public ResultBean addCustomer(String company) throws ApiValidateException, Exception {
         JsonObject jsonObject = DataUtil.getJsonObject(company);
         ValidateData.validate(FILE_JSON_VALIDATE, jsonObject, false);
-        return null;
+        return new ResultBean("200", "success", "success");
     }
 }
