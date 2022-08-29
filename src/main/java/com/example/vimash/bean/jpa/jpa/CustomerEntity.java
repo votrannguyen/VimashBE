@@ -20,7 +20,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "m_customer")
-public class CustomerEntity implements Serializable {
+public class CustomerEntity<c6b323b76622e931dd193f37698fd2a333c9cb6d> implements Serializable {
 
     //Customer Id
     @Id
@@ -186,180 +186,179 @@ public class CustomerEntity implements Serializable {
         this.delFlg = delFlg;
     }
 
-    public Long getCustomerId() {
-        return customerId;
-    }
+            public Long getCustomerId () {
+            return customerId;
+        }
 
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
-    }
+            public void setCustomerId (Long customerId){
+            this.customerId = customerId;
+        }
 
-    public String getCustomerCode() {
-        return customerCode;
-    }
+            public String getCustomerCode () {
+            return customerCode;
+        }
 
-    public void setCustomerCode(String customerCode) {
-        this.customerCode = customerCode;
-    }
+            public void setCustomerCode (String customerCode){
+            this.customerCode = customerCode;
+        }
 
-    public String getCustomerName() {
-        return customerName;
-    }
+            public String getCustomerName () {
+            return customerName;
+        }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
+            public void setCustomerName (String customerName){
+            this.customerName = customerName;
+        }
 
-    public String getPicName() {
-        return picName;
-    }
+            public String getPicName () {
+            return picName;
+        }
 
-    public void setPicName(String picName) {
-        this.picName = picName;
-    }
+            public void setPicName (String picName){
+            this.picName = picName;
+        }
 
-    public String getFaxNumber() {
-        return faxNumber;
-    }
+            public String getFaxNumber () {
+            return faxNumber;
+        }
 
-    public void setFaxNumber(String faxNumber) {
-        this.faxNumber = faxNumber;
-    }
+            public void setFaxNumber (String faxNumber){
+            this.faxNumber = faxNumber;
+        }
 
-    public String getLeadTime() {
-        return leadTime;
-    }
+            public String getLeadTime () {
+            return leadTime;
+        }
 
-    public void setLeadTime(String leadTime) {
-        this.leadTime = leadTime;
-    }
+            public void setLeadTime (String leadTime){
+            this.leadTime = leadTime;
+        }
 
-    public String getPostCode() {
-        return postCode;
-    }
+            public String getPostCode () {
+            return postCode;
+        }
 
-    public void setPostCode(String postCode) {
-        this.postCode = postCode;
-    }
+            public void setPostCode (String postCode){
+            this.postCode = postCode;
+        }
 
-    public Integer getCreateBy() {
-        return createBy;
-    }
+            public Integer getCreateBy () {
+            return createBy;
+        }
 
-    public void setCreateBy(Integer createBy) {
-        this.createBy = createBy;
-    }
+            public void setCreateBy (Integer createBy){
+            this.createBy = createBy;
+        }
 
-    public Date getCreateDate() {
-        return createDate;
-    }
+            public Date getCreateDate () {
+            return createDate;
+        }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
+            public void setCreateDate (Date createDate){
+            this.createDate = createDate;
+        }
 
-    public Integer getUpdateBy() {
-        return updateBy;
-    }
+            public Integer getUpdateBy () {
+            return updateBy;
+        }
 
-    public void setUpdateBy(Integer updateBy) {
-        this.updateBy = updateBy;
-    }
+            public void setUpdateBy (Integer updateBy){
+            this.updateBy = updateBy;
+        }
 
-    public Date getUpdateDate() {
-        return updateDate;
-    }
+            public Date getUpdateDate () {
+            return updateDate;
+        }
 
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
+            public void setUpdateDate (Date updateDate){
+            this.updateDate = updateDate;
+        }
 
-    public String getRouteCode() {
-        return routeCode;
-    }
+            public String getRouteCode () {
+            return routeCode;
+        }
 
-    public void setRouteCode(String routeCode) {
-        this.routeCode = routeCode;
-    }
+            public void setRouteCode (String routeCode){
+            this.routeCode = routeCode;
+        }
 
-    public String getCourseCode() {
-        return courseCode;
-    }
+            public String getCourseCode () {
+            return courseCode;
+        }
 
-    public void setCourseCode(String courseCode) {
-        this.courseCode = courseCode;
-    }
+            public void setCourseCode (String courseCode){
+            this.courseCode = courseCode;
+        }
 
-    public String getTelephone() {
-        return telephone;
-    }
+            public String getTelephone () {
+            return telephone;
+        }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
+            public void setTelephone (String telephone){
+            this.telephone = telephone;
+        }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
+            public String getPhoneNumber () {
+            return phoneNumber;
+        }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+            public void setPhoneNumber (String phoneNumber){
+            this.phoneNumber = phoneNumber;
+        }
 
-    public String getZipCode() {
-        return zipCode;
-    }
+            public String getZipCode () {
+            return zipCode;
+        }
 
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
+            public void setZipCode (String zipCode){
+            this.zipCode = zipCode;
+        }
 
-    public String getAddress1() {
-        return address1;
-    }
+            public String getAddress1 () {
+            return address1;
+        }
 
-    public void setAddress1(String address1) {
-        this.address1 = address1;
-    }
+            public void setAddress1 (String address1){
+            this.address1 = address1;
+        }
 
-    public String getAddress2() {
-        return address2;
-    }
+            public String getAddress2 () {
+            return address2;
+        }
 
-    public void setAddress2(String address2) {
-        this.address2 = address2;
-    }
+            public void setAddress2 (String address2){
+            this.address2 = address2;
+        }
 
-    public String getAddress3() {
-        return address3;
-    }
+            public String getAddress3 () {
+            return address3;
+        }
 
-    public void setAddress3(String address3) {
-        this.address3 = address3;
-    }
+            public void setAddress3 (String address3){
+            this.address3 = address3;
+        }
 
-    public String getAddress4() {
-        return address4;
-    }
+            public String getAddress4 () {
+            return address4;
+        }
 
-    public void setAddress4(String address4) {
-        this.address4 = address4;
-    }
+            public void setAddress4 (String address4){
+            this.address4 = address4;
+        }
 
-    public String getDescription() {
-        return description;
-    }
+            public String getDescription () {
+            return description;
+        }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+            public void setDescription (String description){
+            this.description = description;
+        }
 
-    public String getDelFlg() {
-        return delFlg;
-    }
+            public String getDelFlg () {
+            return delFlg;
+        }
 
-    public void setDelFlg(String delFlg) {
-        this.delFlg = delFlg;
-    }
-}
-
+            public void setDelFlg (String delFlg){
+            this.delFlg = delFlg;
+        }
+        }
