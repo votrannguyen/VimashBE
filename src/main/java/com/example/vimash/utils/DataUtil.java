@@ -5,6 +5,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
@@ -86,6 +88,20 @@ public class DataUtil {
         Pattern pattern = Pattern.compile("\\d{3}");
         Matcher matcher = pattern.matcher(code);
         return matcher.matches();
+    }
+
+    public static String decodeURL(String url) {
+        if (isEmpty(url)) {
+            return url;
+        }
+        try {
+            if (DataUtil.isEmpty(url)) {
+                return null;
+            }
+            return URLDecoder.decode(url, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            return url;
+        }
     }
 
     public static boolean isInterger(String value){

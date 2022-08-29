@@ -2,6 +2,8 @@ package com.example.vimash.services.impl;
 
 import com.example.vimash.bean.jpa.ResultBean;
 import com.example.vimash.bean.jpa.jpa.CustomerEntity;
+import com.example.vimash.bean.jpa.jpa.response.customer.CustomerIPageResponse;
+import com.example.vimash.bean.jpa.request.CustomerSearchListRequest;
 import com.example.vimash.dao.CustomerDao;
 import com.example.vimash.services.CustomerService;
 import com.example.vimash.utils.ApiValidateException;
@@ -22,13 +24,24 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerDao customerDao;
 
+//    @Override
+//    public ResultBean getCustomer(String name, String code1, String code2, Integer page, Integer size) throws ApiValidateException, Exception {
+//
+//        List<CustomerEntity> customerEntityList = null;
+//        customerEntityList = customerDao.getAllCustomer(name.trim(),code1.trim(), code2.trim(), page, size);
+//
+//        return new ResultBean(customerEntityList, Constants.STATUS_OK, Constants.MESSAGE_OK);
+//    }
+
     @Override
     public ResultBean getCustomer(String name, String code1, String code2, Integer page, Integer size) throws ApiValidateException, Exception {
 
-        List<CustomerEntity> customerEntityList = null;
-        customerEntityList = customerDao.getAllCustomer(name.trim(),code1.trim(), code2.trim(), page, size);
-
-        return new ResultBean(customerEntityList, Constants.STATUS_OK, Constants.MESSAGE_OK);
+        CustomerSearchListRequest searchListRequest = new CustomerSearchListRequest();
+        searchListRequest.currentPage(page);
+        searchListRequest.noRecordInPage(size);
+        searchListRequest.addSearchField("name", DataUtil.decodeURL(name), false);
+        CustomerIPageResponse response = customerDao.findAll(searchListRequest);
+        return new ResultBean(response, Constants.STATUS_OK, Constants.MESSAGE_OK);
     }
 
     @Override

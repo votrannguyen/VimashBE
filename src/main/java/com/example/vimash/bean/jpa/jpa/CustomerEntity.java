@@ -39,6 +39,24 @@ public class CustomerEntity implements Serializable {
     @JsonProperty("customerName")
     private String customerName;
 
+    //pic Name
+    @Column(name = "pic_name")
+    @JsonProperty("picName")
+    private String picName;
+
+    //Fax Number
+    @JsonProperty("faxNumber")
+    private String faxNumber;
+
+    //lead time
+    @JsonProperty("leadTime")
+    private String leadTime;
+
+    //post code
+    @Column(name = "post_code")
+    @JsonProperty("postCode")
+    private String postCode;
+
     //Create By
     @Column(name = "create_by")
     @JsonProperty("createBy")
@@ -74,10 +92,10 @@ public class CustomerEntity implements Serializable {
     @JsonProperty("telephone")
     private String telephone;
 
-    //Fax Number
-    @Column(name = "fax_number")
-    @JsonProperty("faxNumber")
-    private String faxNumber;
+    // phone number
+    @Column(name = "phone_number")
+    @JsonProperty("phoneNumber")
+    private String phoneNumber;
 
     //Zip Code
     @Column(name = "zip_code")
@@ -118,12 +136,14 @@ public class CustomerEntity implements Serializable {
     }
 
     //Contructor có ID
-    public CustomerEntity(Long customerId, String customerName, Integer createBy, Date createDate, Integer updateBy,
-                          Date updateDate, String routeCode, String courseCode, String telephone, String faxNumber,
-                          String zipCode, String address1, String address2, String address3, String address4,
-                          String description, String delFlg) {
+    public CustomerEntity(Long customerId, String customerCode, String customerName, String picName, String faxNumber, String leadTime, String postCode, Integer createBy, Date createDate, Integer updateBy, Date updateDate, String routeCode, String courseCode, String telephone, String phoneNumber, String zipCode, String address1, String address2, String address3, String address4, String description, String delFlg) {
         this.customerId = customerId;
+        this.customerCode = customerCode;
         this.customerName = customerName;
+        this.picName = picName;
+        this.faxNumber = faxNumber;
+        this.leadTime = leadTime;
+        this.postCode = postCode;
         this.createBy = createBy;
         this.createDate = createDate;
         this.updateBy = updateBy;
@@ -131,7 +151,7 @@ public class CustomerEntity implements Serializable {
         this.routeCode = routeCode;
         this.courseCode = courseCode;
         this.telephone = telephone;
-        this.faxNumber = faxNumber;
+        this.phoneNumber = phoneNumber;
         this.zipCode = zipCode;
         this.address1 = address1;
         this.address2 = address2;
@@ -142,11 +162,13 @@ public class CustomerEntity implements Serializable {
     }
 
     //Contructor không có Id
-    public CustomerEntity(String customerName, Integer createBy, Date createDate, Integer updateBy, Date updateDate,
-                          String routeCode, String courseCode, String telephone, String faxNumber, String zipCode,
-                          String address1, String address2, String address3, String address4, String description,
-                          String delFlg) {
+    public CustomerEntity(String customerCode, String customerName, String picName, String faxNumber, String leadTime, String postCode, Integer createBy, Date createDate, Integer updateBy, Date updateDate, String routeCode, String courseCode, String telephone, String phoneNumber, String zipCode, String address1, String address2, String address3, String address4, String description, String delFlg) {
+        this.customerCode = customerCode;
         this.customerName = customerName;
+        this.picName = picName;
+        this.faxNumber = faxNumber;
+        this.leadTime = leadTime;
+        this.postCode = postCode;
         this.createBy = createBy;
         this.createDate = createDate;
         this.updateBy = updateBy;
@@ -154,7 +176,7 @@ public class CustomerEntity implements Serializable {
         this.routeCode = routeCode;
         this.courseCode = courseCode;
         this.telephone = telephone;
-        this.faxNumber = faxNumber;
+        this.phoneNumber = phoneNumber;
         this.zipCode = zipCode;
         this.address1 = address1;
         this.address2 = address2;
@@ -172,12 +194,52 @@ public class CustomerEntity implements Serializable {
         this.customerId = customerId;
     }
 
+    public String getCustomerCode() {
+        return customerCode;
+    }
+
+    public void setCustomerCode(String customerCode) {
+        this.customerCode = customerCode;
+    }
+
     public String getCustomerName() {
         return customerName;
     }
 
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
+    }
+
+    public String getPicName() {
+        return picName;
+    }
+
+    public void setPicName(String picName) {
+        this.picName = picName;
+    }
+
+    public String getFaxNumber() {
+        return faxNumber;
+    }
+
+    public void setFaxNumber(String faxNumber) {
+        this.faxNumber = faxNumber;
+    }
+
+    public String getLeadTime() {
+        return leadTime;
+    }
+
+    public void setLeadTime(String leadTime) {
+        this.leadTime = leadTime;
+    }
+
+    public String getPostCode() {
+        return postCode;
+    }
+
+    public void setPostCode(String postCode) {
+        this.postCode = postCode;
     }
 
     public Integer getCreateBy() {
@@ -236,12 +298,12 @@ public class CustomerEntity implements Serializable {
         this.telephone = telephone;
     }
 
-    public String getFaxNumber() {
-        return faxNumber;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setFaxNumber(String faxNumber) {
-        this.faxNumber = faxNumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getZipCode() {

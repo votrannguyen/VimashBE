@@ -26,7 +26,7 @@ public abstract class PageRequest implements Serializable {
             String trimmedValue = ((String) value).trim();
             if (trimmedValue.length() == 0) return this;
             if (isNotUsingLike.length == 0 || !isNotUsingLike[0]) {
-                value = "%" + String.valueOf(value).replaceAll("_", "\\\\_").replaceAll("%", "\\\\%") + "%";
+                value = "'%" + String.valueOf(value).replaceAll("_", "\\\\_").replaceAll("%", "\\\\%") + "%'";
             }
         }
         this.searchFields.put(key, value);
@@ -59,6 +59,10 @@ public abstract class PageRequest implements Serializable {
 
     // append sql condition
     protected abstract void appendCondition(StringBuilder sql);
+
+    public abstract StringBuilder getQuery();
+
+    public abstract StringBuilder getCount();
 
     @SuppressWarnings("rawtypes")
     public abstract Class getEntityClass();

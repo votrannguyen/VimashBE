@@ -13,15 +13,15 @@ public class CustomerSearchListRequest extends PageRequest{
             this.searchFields.forEach((k, v) -> {
                 switch (k) {
                     case "name":
-                        sqlWhere.append(String.format(" AND cie.userName LIKE :%s ", k));
+                        sqlWhere.append(String.format(" AND c.customerName LIKE :s ", v));
                         break;
                     default:
                         if (v instanceof String) {
                             String value = (String) v;
                             if (value.startsWith("%") || value.endsWith("%")) {
-                                sqlWhere.append(String.format(" AND bill.%s LIKE :%s ", k, k));
+                                sqlWhere.append(String.format(" AND c.customerName.%s LIKE :%s ", k, v));
                             } else {
-                                sqlWhere.append(String.format(" AND bill.%s = :%s ", k, k));
+                                sqlWhere.append(String.format(" AND c.customerName.%s = :%s ", k, v));
                             }
                         }
                 }
@@ -30,6 +30,21 @@ public class CustomerSearchListRequest extends PageRequest{
                 sql.append(" WHERE 1=1 ").append(sqlWhere);
             }
         }
+    }
+
+    @Override
+    public StringBuilder getQuery() {
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT c");
+        sql.append(" FROM ");
+        sql.append(" CustomerEntity c ");
+        appendCondition(sql);
+        return sql;
+    }
+
+    @Override
+    public StringBuilder getCount() {
+        return null;
     }
 
     @Override
