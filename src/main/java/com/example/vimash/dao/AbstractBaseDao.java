@@ -33,49 +33,27 @@ public abstract class AbstractBaseDao {
     public CustomerIPageResponse findAll(PageRequest searchDTO) {
         CustomerIPageResponse customerIPageResponse = new CustomerIPageResponse();
         String hsql = searchDTO.getQuery().toString().trim();
-        System.out.println(hsql);
         Query query = this.entityManager.createQuery(hsql);
         if (searchDTO.hasPaging()) {
             query.setFirstResult(searchDTO.getFirstResult()).setMaxResults(searchDTO.getNoRecordInPage());
         }
 
         List<CustomerEntity> list = query.getResultList();
-        System.out.println("fsdf");
-        List<CustomerResponse> lrsp = null;
+        List<CustomerResponse> lrsp = new ArrayList<>();
         list.stream().forEach(l -> {
-            System.out.println(l.getCustomerCode());
             CustomerResponse lrspp = new CustomerResponse(l.getCustomerCode(),l.getPostCode(),
                     l.getCustomerName(), l.getPicName(), l.getAddress1(), l.getPhoneNumber(),
                     l.getFaxNumber(), l.getLeadTime(), l.getRouteCode(), l.getCourseCode());
             lrsp.add(lrspp);
         });
-        List a = new ArrayList();
-        a.add(1, "111111");
-        customerIPageResponse.setResults(a);
         customerIPageResponse.pageInfo(searchDTO.getCurrentPage(), searchDTO.getNoRecordInPage(), countTotalRecord(searchDTO));
+        customerIPageResponse.rawResults(lrsp);
         return customerIPageResponse;
-        //fillParams(query, searchDTO.getSearchFields());
-//        T instance;
-//        try {
-//            instance = (T) searchDTO.getResponseClass().getConstructor().newInstance();
-//            instance.pageInfo(searchDTO.getCurrentPage(), searchDTO.getNoRecordInPage(), countTotalRecord(searchDTO));
-//            System.out.println("ds");
-//
-//            if (searchDTO.hasPaging() && instance.getTotalPage() > 0 && (instance.getCurrentPage() > instance.getTotalPage())) {
-//                searchDTO.currentPage(instance.getTotalPage());
-//                query.setFirstResult(searchDTO.getFirstResult()).setMaxResults(searchDTO.getNoRecordInPage());
-//                instance.pageInfo(searchDTO.getCurrentPage(), searchDTO.getNoRecordInPage(), countTotalRecord(searchDTO));
-//            }
-//            instance.rawResults(query.getResultList());
-//            return instance;
-//        } catch (Exception e) {
-//            return null;
-//        }
     }
 
     protected Long countTotalRecord(PageRequest searchDTO) {
         Query query = this.entityManager.createQuery(searchDTO.getCount().toString());
-        fillParams(query, searchDTO.getSearchFields());
+        //fillParams(query, searchDTO.getSearchFields());
         Object singResult = query.getSingleResult();
         if (Objects.isNull(singResult)) {
             return (long) 0;

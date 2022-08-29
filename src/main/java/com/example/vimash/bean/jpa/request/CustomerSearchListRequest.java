@@ -13,7 +13,7 @@ public class CustomerSearchListRequest extends PageRequest{
             this.searchFields.forEach((k, v) -> {
                 switch (k) {
                     case "name":
-                        sqlWhere.append(String.format(" AND c.customerName LIKE :s ", v));
+                        sqlWhere.append(String.format(" AND c.customerName LIKE %s", v));
                         break;
                     default:
                         if (v instanceof String) {
@@ -44,7 +44,12 @@ public class CustomerSearchListRequest extends PageRequest{
 
     @Override
     public StringBuilder getCount() {
-        return null;
+        StringBuilder sql = new StringBuilder();
+        sql.append(" SELECT COUNT(c)");
+        sql.append(" FROM ");
+        sql.append("    CustomerEntity c ");
+        appendCondition(sql);
+        return sql;
     }
 
     @Override
