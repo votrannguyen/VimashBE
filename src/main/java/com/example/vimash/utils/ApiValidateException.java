@@ -1,7 +1,14 @@
 package com.example.vimash.utils;
 
 public class ApiValidateException extends Exception{
-    private String code;
+	
+	
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private String code;
 
     private String field;
 

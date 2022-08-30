@@ -1,10 +1,16 @@
 package com.example.vimash.bean.jpa.jpa;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * [OVERVIEW] : T  Customer Info Of Entity.
@@ -20,9 +26,16 @@ import java.util.Date;
 
 @Entity
 @Table(name = "m_customer")
-public class CustomerEntity<c6b323b76622e931dd193f37698fd2a333c9cb6d> implements Serializable {
+public class CustomerEntity implements Serializable {
+	
+	
 
-    //Customer Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	//Customer Id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")

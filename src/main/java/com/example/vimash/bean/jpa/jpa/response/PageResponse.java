@@ -1,17 +1,22 @@
 package com.example.vimash.bean.jpa.jpa.response;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.apache.commons.collections4.CollectionUtils;
-
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
+import org.apache.commons.collections4.CollectionUtils;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 @JsonSerialize
 public class PageResponse<R> implements Serializable {
-
-    protected Integer totalPage;
+	
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected Integer totalPage;
     protected Integer currentPage;
     protected long totalRecords;
     protected Integer noRecordInPage;

@@ -1,310 +1,444 @@
 package com.example.vimash.bean.jpa.jpa;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * [OVERVIEW] : T Delivery Of Entity.
  *
  * @author: (VIMASH)
  * @version: 1.0
- * @History
- * [NUMBER]  [VER]     [DATE]          [USER]             [CONTENT]
- * --------------------------------------------------------------------------
- * 001       1.0       2022/08/24      (VIMASH)         Create new
+ * @History [NUMBER] [VER] [DATE] [USER] [CONTENT]
+ *          --------------------------------------------------------------------------
+ *          001 1.0 2022/08/24 (VIMASH) Create new
  */
 
 @Entity
-@Table(name = "m_delivery")
+@Table(name = "m_customer_delivery_dest")
 public class DeliveryEntity implements Serializable {
 
-    //User Id
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "delivery_id")
-    @JsonProperty("deliveryId")
-    private Long deliveryId;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-    //Delivery Name
-    @Column(name = "delivery_name")
-    @JsonProperty("deliveryName")
-    private String deliveryName;
+	// Delivery Id
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "delivery_destination_id")
+	@JsonProperty("delivery_destination_id")
+	private Long deliveryId;
 
-    //Telephone
-    @Column(name = "telephone")
-    @JsonProperty("telephone")
-    private String telephone;
+	// Company_id
+	@Column(name = "company_id")
+	@JsonProperty("company_id")
+	private Integer companyId;
 
-    //Fax Number
-    @Column(name = "fax_number")
-    @JsonProperty("faxNumber")
-    private String faxNumber;
+	// customer_id
+	@Column(name = "customer_id")
+	@JsonProperty("customer_id")
+	private Integer customerId;
 
-    //Zip Code
-    @Column(name = "zip_code")
-    @JsonProperty("zipCode")
-    private String zipCode;
+	// destination_code
+	@Column(name = "destination_code")
+	@JsonProperty("destination_code")
+	private String destinationCode;
 
-    //Address 1
-    @Column(name = "address1")
-    @JsonProperty("address1")
-    private String address1;
+	// destination_name
+	@Column(name = "destination_name")
+	@JsonProperty("destination_name")
+	private String destinationName;
 
-    //Address 2
-    @Column(name = "address2")
-    @JsonProperty("address2")
-    private String address2;
+	// pic_name
+	@Column(name = "pic_name")
+	@JsonProperty("pic_name")
+	private String picName;
 
-    //Address 3
-    @Column(name = "address3")
-    @JsonProperty("address3")
-    private String address3;
+	// phone_number
+	@Column(name = "phone_number")
+	@JsonProperty("phone_number")
+	private String phoneNumber;
 
-    //Address 4
-    @Column(name = "address4")
-    @JsonProperty("address4")
-    private String address4;
+	// fax_number
+	@Column(name = "fax_number")
+	@JsonProperty("fax_number")
+	private String faxNumber;
 
-    //Create By
-    @Column(name = "create_by")
-    @JsonProperty("createBy")
-    private Integer createBy;
+	// post_code
+	@Column(name = "post_code")
+	@JsonProperty("post_code")
+	private String postCode;
 
-    //Create Date
-    @Column(name = "create_date")
-    @JsonProperty("createDate")
-    private Date createDate;
+	// Address 1
+	@Column(name = "address1")
+	@JsonProperty("address1")
+	private String address1;
 
-    //Update By
-    @Column(name = "update_by")
-    @JsonProperty("updateBy")
-    private Integer updateBy;
+	// Address 2
+	@Column(name = "address2")
+	@JsonProperty("address2")
+	private String address2;
 
-    //Update Date
-    @Column(name = "update_date")
-    @JsonProperty("updateDate")
-    private Date updateDate;
+	// Address 3
+	@Column(name = "address3")
+	@JsonProperty("address3")
+	private String address3;
 
-    //Route Code
-    @Column(name = "route_code")
-    @JsonProperty("routeCode")
-    private String routeCode;
+	// Address 4
+	@Column(name = "address4")
+	@JsonProperty("address4")
+	private String address4;
 
-    //Course Code
-    @Column(name = "course_code")
-    @JsonProperty("courseCode")
-    private String courseCode;
+	// lead_time
+	@Column(name = "lead_time")
+	@JsonProperty("lead_time")
+	private Integer leadTime;
 
-    //Description
-    @Column(name = "description")
-    @JsonProperty("description")
-    private String description;
+	// Route Code
+	@Column(name = "route_code")
+	@JsonProperty("routeCode")
+	private String routeCode;
 
-    //Customer
-    @Column(name = "customer_id")
-    @JsonProperty("customerId")
-    private Integer customerId;
+	// Course Code
+	@Column(name = "course_code")
+	@JsonProperty("courseCode")
+	private String courseCode;
 
-    //Delete column
-    @Column(name = "del_flg")
-    @JsonProperty("delFlg")
-    private String delFlg = "0";
+	// output_priority_rank
+	@Column(name = "output_priority_rank")
+	@JsonProperty("output_priority_rank")
+	private Integer outputPriorityRank;
 
-    public DeliveryEntity() {
-    }
+	// free_item1
+	@Column(name = "free_item1")
+	@JsonProperty("free_item1")
+	private String freeItem1;
 
-    //Contructor có Id
-    public DeliveryEntity(Long deliveryId, String deliveryName, String telephone, String faxNumber, String zipCode,
-                          String address1, String address2, String address3, String address4, Integer createBy, Date createDate,
-                          Integer updateBy, Date updateDate, String routeCode, String courseCode, String description,
-                          Integer customerId, String delFlg) {
-        this.deliveryId = deliveryId;
-        this.deliveryName = deliveryName;
-        this.telephone = telephone;
-        this.faxNumber = faxNumber;
-        this.zipCode = zipCode;
-        this.address1 = address1;
-        this.address2 = address2;
-        this.address3 = address3;
-        this.address4 = address4;
-        this.createBy = createBy;
-        this.createDate = createDate;
-        this.updateBy = updateBy;
-        this.updateDate = updateDate;
-        this.routeCode = routeCode;
-        this.courseCode = courseCode;
-        this.description = description;
-        this.customerId = customerId;
-        this.delFlg = delFlg;
-    }
+	// free_item2
+	@Column(name = "free_item2")
+	@JsonProperty("free_item2")
+	private String freeItem2;
 
-    public DeliveryEntity(String deliveryName, String telephone, String faxNumber, String zipCode, String address1,
-                          String address2, String address3, String address4, Integer createBy, Date createDate,
-                          Integer updateBy, Date updateDate, String routeCode, String courseCode, String description,
-                          Integer customerId, String delFlg) {
-        this.deliveryName = deliveryName;
-        this.telephone = telephone;
-        this.faxNumber = faxNumber;
-        this.zipCode = zipCode;
-        this.address1 = address1;
-        this.address2 = address2;
-        this.address3 = address3;
-        this.address4 = address4;
-        this.createBy = createBy;
-        this.createDate = createDate;
-        this.updateBy = updateBy;
-        this.updateDate = updateDate;
-        this.routeCode = routeCode;
-        this.courseCode = courseCode;
-        this.description = description;
-        this.customerId = customerId;
-        this.delFlg = delFlg;
-    }
+	// free_item3
+	@Column(name = "free_item3")
+	@JsonProperty("free_item3")
+	private String freeItem3;
 
-    public Long getDeliveryId() {
-        return deliveryId;
-    }
+	// Notes
+	@Column(name = "notes")
+	@JsonProperty("notes")
+	private String notes;
 
-    public void setDeliveryId(Long deliveryId) {
-        this.deliveryId = deliveryId;
-    }
+	// Delete column
+	@Column(name = "del_flg")
+	@JsonProperty("del_flg")
+	private String delFlg = "0";
 
-    public String getDeliveryName() {
-        return deliveryName;
-    }
+	// Create By
+	@Column(name = "create_by")
+	@JsonProperty("create_by")
+	private Integer createBy;
 
-    public void setDeliveryName(String deliveryName) {
-        this.deliveryName = deliveryName;
-    }
+	// Create Date
+	@Column(name = "create_date")
+	@JsonProperty("create_date")
+	private Date createDate;
 
-    public String getTelephone() {
-        return telephone;
-    }
+	// Update By
+	@Column(name = "update_by")
+	@JsonProperty("update_by")
+	private Integer updateBy;
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
+	// Update Date
+	@Column(name = "update_date")
+	@JsonProperty("update_date")
+	private Date updateDate;
 
-    public String getFaxNumber() {
-        return faxNumber;
-    }
+	public DeliveryEntity() {
+	}
 
-    public void setFaxNumber(String faxNumber) {
-        this.faxNumber = faxNumber;
-    }
+	public DeliveryEntity(Integer companyId, Integer customerId, String destinationCode, String destinationName,
+			String picName, String phoneNumber, String faxNumber, String postCode, String address1, String address2,
+			String address3, String address4, Integer leadTime, String routeCode, String courseCode,
+			Integer outputPriorityRank, String freeItem1, String freeItem2, String freeItem3, String notes,
+			String delFlg, Integer createBy, Date createDate, Integer updateBy, Date updateDate) {
+		super();
+		this.companyId = companyId;
+		this.customerId = customerId;
+		this.destinationCode = destinationCode;
+		this.destinationName = destinationName;
+		this.picName = picName;
+		this.phoneNumber = phoneNumber;
+		this.faxNumber = faxNumber;
+		this.postCode = postCode;
+		this.address1 = address1;
+		this.address2 = address2;
+		this.address3 = address3;
+		this.address4 = address4;
+		this.leadTime = leadTime;
+		this.routeCode = routeCode;
+		this.courseCode = courseCode;
+		this.outputPriorityRank = outputPriorityRank;
+		this.freeItem1 = freeItem1;
+		this.freeItem2 = freeItem2;
+		this.freeItem3 = freeItem3;
+		this.notes = notes;
+		this.delFlg = delFlg;
+		this.createBy = createBy;
+		this.createDate = createDate;
+		this.updateBy = updateBy;
+		this.updateDate = updateDate;
+	}
 
-    public String getZipCode() {
-        return zipCode;
-    }
+	public DeliveryEntity(Long deliveryId, Integer companyId, Integer customerId, String destinationCode,
+			String destinationName, String picName, String phoneNumber, String faxNumber, String postCode,
+			String address1, String address2, String address3, String address4, Integer leadTime, String routeCode,
+			String courseCode, Integer outputPriorityRank, String freeItem1, String freeItem2, String freeItem3,
+			String notes, String delFlg, Integer createBy, Date createDate, Integer updateBy, Date updateDate) {
+		super();
+		this.deliveryId = deliveryId;
+		this.companyId = companyId;
+		this.customerId = customerId;
+		this.destinationCode = destinationCode;
+		this.destinationName = destinationName;
+		this.picName = picName;
+		this.phoneNumber = phoneNumber;
+		this.faxNumber = faxNumber;
+		this.postCode = postCode;
+		this.address1 = address1;
+		this.address2 = address2;
+		this.address3 = address3;
+		this.address4 = address4;
+		this.leadTime = leadTime;
+		this.routeCode = routeCode;
+		this.courseCode = courseCode;
+		this.outputPriorityRank = outputPriorityRank;
+		this.freeItem1 = freeItem1;
+		this.freeItem2 = freeItem2;
+		this.freeItem3 = freeItem3;
+		this.notes = notes;
+		this.delFlg = delFlg;
+		this.createBy = createBy;
+		this.createDate = createDate;
+		this.updateBy = updateBy;
+		this.updateDate = updateDate;
+	}
 
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
+	public Long getDeliveryId() {
+		return deliveryId;
+	}
 
-    public String getAddress1() {
-        return address1;
-    }
+	public void setDeliveryId(Long deliveryId) {
+		this.deliveryId = deliveryId;
+	}
 
-    public void setAddress1(String address1) {
-        this.address1 = address1;
-    }
+	public Integer getCompanyId() {
+		return companyId;
+	}
 
-    public String getAddress2() {
-        return address2;
-    }
+	public void setCompanyId(Integer companyId) {
+		this.companyId = companyId;
+	}
 
-    public void setAddress2(String address2) {
-        this.address2 = address2;
-    }
+	public Integer getCustomerId() {
+		return customerId;
+	}
 
-    public String getAddress3() {
-        return address3;
-    }
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
+	}
 
-    public void setAddress3(String address3) {
-        this.address3 = address3;
-    }
+	public String getDestinationCode() {
+		return destinationCode;
+	}
 
-    public String getAddress4() {
-        return address4;
-    }
+	public void setDestinationCode(String destinationCode) {
+		this.destinationCode = destinationCode;
+	}
 
-    public void setAddress4(String address4) {
-        this.address4 = address4;
-    }
+	public String getDestinationName() {
+		return destinationName;
+	}
 
-    public Integer getCreateBy() {
-        return createBy;
-    }
+	public void setDestinationName(String destinationName) {
+		this.destinationName = destinationName;
+	}
 
-    public void setCreateBy(Integer createBy) {
-        this.createBy = createBy;
-    }
+	public String getPicName() {
+		return picName;
+	}
 
-    public Date getCreateDate() {
-        return createDate;
-    }
+	public void setPicName(String picName) {
+		this.picName = picName;
+	}
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
 
-    public Integer getUpdateBy() {
-        return updateBy;
-    }
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 
-    public void setUpdateBy(Integer updateBy) {
-        this.updateBy = updateBy;
-    }
+	public String getFaxNumber() {
+		return faxNumber;
+	}
 
-    public Date getUpdateDate() {
-        return updateDate;
-    }
+	public void setFaxNumber(String faxNumber) {
+		this.faxNumber = faxNumber;
+	}
 
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
+	public String getPostCode() {
+		return postCode;
+	}
 
-    public String getRouteCode() {
-        return routeCode;
-    }
+	public void setPostCode(String postCode) {
+		this.postCode = postCode;
+	}
 
-    public void setRouteCode(String routeCode) {
-        this.routeCode = routeCode;
-    }
+	public String getAddress1() {
+		return address1;
+	}
 
-    public String getCourseCode() {
-        return courseCode;
-    }
+	public void setAddress1(String address1) {
+		this.address1 = address1;
+	}
 
-    public void setCourseCode(String courseCode) {
-        this.courseCode = courseCode;
-    }
+	public String getAddress2() {
+		return address2;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public void setAddress2(String address2) {
+		this.address2 = address2;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public String getAddress3() {
+		return address3;
+	}
 
-    public Integer getCustomerId() {
-        return customerId;
-    }
+	public void setAddress3(String address3) {
+		this.address3 = address3;
+	}
 
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
-    }
+	public String getAddress4() {
+		return address4;
+	}
 
-    public String getDelFlg() {
-        return delFlg;
-    }
+	public void setAddress4(String address4) {
+		this.address4 = address4;
+	}
 
-    public void setdelFlg(String delFlg) {
-        this.delFlg = delFlg;
-    }
+	public Integer getLeadTime() {
+		return leadTime;
+	}
+
+	public void setLeadTime(Integer leadTime) {
+		this.leadTime = leadTime;
+	}
+
+	public String getRouteCode() {
+		return routeCode;
+	}
+
+	public void setRouteCode(String routeCode) {
+		this.routeCode = routeCode;
+	}
+
+	public String getCourseCode() {
+		return courseCode;
+	}
+
+	public void setCourseCode(String courseCode) {
+		this.courseCode = courseCode;
+	}
+
+	public Integer getOutputPriorityRank() {
+		return outputPriorityRank;
+	}
+
+	public void setOutputPriorityRank(Integer outputPriorityRank) {
+		this.outputPriorityRank = outputPriorityRank;
+	}
+
+	public String getFreeItem1() {
+		return freeItem1;
+	}
+
+	public void setFreeItem1(String freeItem1) {
+		this.freeItem1 = freeItem1;
+	}
+
+	public String getFreeItem2() {
+		return freeItem2;
+	}
+
+	public void setFreeItem2(String freeItem2) {
+		this.freeItem2 = freeItem2;
+	}
+
+	public String getFreeItem3() {
+		return freeItem3;
+	}
+
+	public void setFreeItem3(String freeItem3) {
+		this.freeItem3 = freeItem3;
+	}
+
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
+	public String getDelFlg() {
+		return delFlg;
+	}
+
+	public void setDelFlg(String delFlg) {
+		this.delFlg = delFlg;
+	}
+
+	public Integer getCreateBy() {
+		return createBy;
+	}
+
+	public void setCreateBy(Integer createBy) {
+		this.createBy = createBy;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public Integer getUpdateBy() {
+		return updateBy;
+	}
+
+	public void setUpdateBy(Integer updateBy) {
+		this.updateBy = updateBy;
+	}
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
 }

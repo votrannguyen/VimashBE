@@ -1,13 +1,13 @@
 package com.example.vimash.dao;
 
+import java.util.List;
+
 import com.example.vimash.bean.jpa.jpa.CustomerEntity;
 import com.example.vimash.bean.jpa.jpa.response.customer.CustomerIPageResponse;
 import com.example.vimash.bean.jpa.request.CustomerSearchListRequest;
 
-import java.util.List;
-
 public interface CustomerDao {
-    List<CustomerEntity> getAllCustomer();
+	List<CustomerEntity> getAllCustomer();
 
-    public CustomerIPageResponse findAll(CustomerSearchListRequest search);
+	CustomerIPageResponse findAll(CustomerSearchListRequest search);
 }

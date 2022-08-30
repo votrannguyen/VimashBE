@@ -1,16 +1,18 @@
 package com.example.vimash.bean.jpa.jpa.response;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.io.Serializable;
-import java.util.Date;
-
 public class CustomerResponse implements Serializable {
-    //Customer Id
+	
+	
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	//Customer Id
     @JsonProperty("customerId")
     private Long customerId;
 

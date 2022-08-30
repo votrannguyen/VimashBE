@@ -1,16 +1,23 @@
 package com.example.vimash.bean.jpa.request;
 
-import com.example.vimash.bean.jpa.jpa.response.PageResponse;
-import org.apache.commons.collections4.MapUtils;
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import org.apache.commons.collections4.MapUtils;
+
+import com.example.vimash.bean.jpa.jpa.response.PageResponse;
+
 public abstract class PageRequest implements Serializable {
-    public Integer noRecordInPage;
+	
+	
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public Integer noRecordInPage;
     public Integer currentPage;
     protected List<String> sortFields;
     protected String code1;
