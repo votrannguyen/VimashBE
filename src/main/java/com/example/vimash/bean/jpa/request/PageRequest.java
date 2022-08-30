@@ -13,6 +13,8 @@ public abstract class PageRequest implements Serializable {
     public Integer noRecordInPage;
     public Integer currentPage;
     protected List<String> sortFields;
+    protected String code1;
+    protected String code2;
     protected Map<String, Object> searchFields;
 
     public PageRequest addSearchField(String key, Object value, boolean... isNotUsingLike) {
@@ -72,6 +74,22 @@ public abstract class PageRequest implements Serializable {
 
     public boolean hasPaging() {
         return this.currentPage != null || this.noRecordInPage != null;
+    }
+
+    public String getCode1() {
+        return code1;
+    }
+
+    public void setCode1(String code1) {
+        this.code1 = code1;
+    }
+
+    public String getCode2() {
+        return code2;
+    }
+
+    public void setCode2(String code2) {
+        this.code2 = code2;
     }
 
     public Integer getFirstResult() {

@@ -12,6 +12,7 @@ import com.example.vimash.utils.Constants;
 import com.example.vimash.utils.DataUtil;
 import com.example.vimash.utils.ValidateData;
 import com.google.gson.JsonObject;
+import org.json.JSONString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,12 +45,20 @@ public class CustomerServiceImpl implements CustomerService {
 //    }
 
     @Override
-    public ResultBean getCustomer(String name, String code1, String code2, Integer page, Integer size) throws ApiValidateException, Exception {
+    public ResultBean getCustomer(String name, Integer page, Integer size, String json) throws ApiValidateException, Exception {
+        JsonObject jsonObject = DataUtil.getJsonObject(json);
+        String code1 = DataUtil.getJsonString(jsonObject, "code1");
+        String code2 = DataUtil.getJsonString(jsonObject, "code2");
+
 
         CustomerSearchListRequest searchListRequest = new CustomerSearchListRequest();
         searchListRequest.currentPage(page);
         searchListRequest.noRecordInPage(size);
-        searchListRequest.addSearchField("name", name, false); //DataUtil.decodeURL(name)
+        searchListRequest.addSearchField("name", DataUtil.decodeURL(name), false); //DataUtil.decodeURL(name)
+        if (null != code1 && null != code2) {
+            searchListRequest.setCode1(code1);
+            searchListRequest.setCode2(code2);
+        }
         CustomerIPageResponse response = customerDao.findAll(searchListRequest);
         return new ResultBean(response, Constants.STATUS_OK, Constants.MESSAGE_OK);
     }

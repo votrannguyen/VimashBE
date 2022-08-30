@@ -33,6 +33,7 @@ public abstract class AbstractBaseDao {
     public CustomerIPageResponse findAll(PageRequest searchDTO) {
         CustomerIPageResponse customerIPageResponse = new CustomerIPageResponse();
         String hsql = searchDTO.getQuery().toString().trim();
+        System.out.println(hsql);
         Query query = this.entityManager.createQuery(hsql);
         if (searchDTO.hasPaging()) {
             query.setFirstResult(searchDTO.getFirstResult()).setMaxResults(searchDTO.getNoRecordInPage());

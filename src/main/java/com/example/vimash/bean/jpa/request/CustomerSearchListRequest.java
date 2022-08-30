@@ -2,6 +2,7 @@ package com.example.vimash.bean.jpa.request;
 
 import com.example.vimash.bean.jpa.jpa.CustomerEntity;
 import com.example.vimash.bean.jpa.jpa.response.PageResponse;
+import com.example.vimash.utils.DataUtil;
 import org.apache.commons.collections4.MapUtils;
 
 public class CustomerSearchListRequest extends PageRequest{
@@ -27,9 +28,21 @@ public class CustomerSearchListRequest extends PageRequest{
                 }
             });
             if (sqlWhere.length() > 0) {
-                sql.append(" WHERE 1=1 ").append(sqlWhere);
+                sql.append(sqlWhere);
             }
         }
+    }
+
+    protected void appendBetween(StringBuilder sql) {
+            StringBuilder sqlBetween = new StringBuilder();
+            System.out.println(code2);
+            System.out.println(code1);
+            if (this.code1 != null && this.code2 != null) {
+                sqlBetween.append(String.format(" AND c.customerCode BETWEEN %s AND %s",code1, code2));
+            }
+            if (sqlBetween.length() > 0) {
+                sql.append(sqlBetween);
+            }
     }
 
     @Override
@@ -38,7 +51,9 @@ public class CustomerSearchListRequest extends PageRequest{
         sql.append("SELECT c");
         sql.append(" FROM ");
         sql.append(" CustomerEntity c ");
+        sql.append(" WHERE 1=1 ");
         appendCondition(sql);
+        appendBetween(sql);
         return sql;
     }
 

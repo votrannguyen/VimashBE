@@ -4,6 +4,7 @@ import com.example.vimash.bean.jpa.ResultBean;
 import com.example.vimash.services.CustomerService;
 import com.example.vimash.utils.ApiValidateException;
 import com.example.vimash.utils.Constants;
+import org.hibernate.annotations.Parameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,13 +21,13 @@ public class CustomerController {
     @RequestMapping(value = "/api/customer", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<ResultBean> getCustomer(
             @RequestParam (defaultValue = "") String name
-            ,@RequestParam (defaultValue = "") String code1
-            ,@RequestParam (defaultValue = "")String code2
             ,@RequestParam (defaultValue = "10")Integer size
-            ,@RequestParam (defaultValue = "1")Integer page) {
+            ,@RequestParam (defaultValue = "1")Integer page,
+            @RequestBody String json){
+
         ResultBean resultBean = null;
         try {
-            resultBean = customerService.getCustomer(name, code1, code2, page, size);
+            resultBean = customerService.getCustomer(name, page, size, json);
         } catch (ApiValidateException e) {
             resultBean = new ResultBean(e.getCode(), e.getField(), e.getMessage());
             return new ResponseEntity<ResultBean>(resultBean, HttpStatus.BAD_REQUEST);
