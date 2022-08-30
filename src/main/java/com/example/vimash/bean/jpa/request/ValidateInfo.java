@@ -25,6 +25,8 @@ public class ValidateInfo {
 
     private boolean isDateTime = false;
 
+    private boolean isNotNull = false;
+
     private String min = null;
 
     private String minEqual = null;
@@ -179,5 +181,13 @@ public class ValidateInfo {
 
     public void setDate(boolean isDate) {
         this.isDate = isDate;
+    }
+
+    public boolean isNotNull() {
+        return isNotNull;
+    }
+
+    public void setNotNull(boolean aNotNull) {
+        isNotNull = aNotNull;
     }
 }

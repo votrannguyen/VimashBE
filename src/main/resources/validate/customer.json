@@ -4,80 +4,61 @@
     {
       "id": "customerName",
       "required": "0",
-      "maxLength": 100
+      "maxLength": 100,
+      "isNotNull": true
+    },
+    {
+      "id": "customerCode",
+      "required": "0",
+      "maxLength": 100,
+      "isNotNull": true
     },
     {
       "id": "createBy",
       "required": "0",
       "maxLength": 6,
-      "number": "\\d+"
+      "number": "\\d+",
+      "isNotNull": true
     },
     {
-      "id": "createDate",
+      "id": "phoneNumber",
       "required": "0",
-      "isDateTime": true
+      "maxLength": 255,
+      "isNotNull": true
     },
     {
-      "id": "updateBy",
+      "id": "postCode",
       "required": "0",
-      "maxLength": 6,
-      "number": "\\d+"
-    },
-    {
-      "id": "updateDate",
-      "required": "0",
-      "maxLength": 7,
-      "isDateTime": true
-    },
-    {
-      "id": "routeCode",
-      "required": "0",
-      "maxLength": 3
-    },
-    {
-      "id": "courseCode",
-      "required": "0",
-      "maxLength": 3
-    },
-    {
-      "id": "telephone",
-      "required": "0",
-      "maxLength": 255
-    },
-    {
-      "id": "zipcode",
-      "required": "0",
-      "maxLength": 255
+      "maxLength": 255,
+      "isNotNull": true
     },
     {
       "id": "address1",
       "required": "0",
-      "maxLength": 50
+      "maxLength": 50,
+      "isNotNull": true
     },
     {
       "id": "address2",
       "required": "0",
-      "maxLength": 50
+      "maxLength": 50,
+      "isNotNull": true
     },
     {
       "id": "address3",
       "required": "0",
-      "maxLength": 50
+      "maxLength": 50,
+      "isNotNull": true
     },
     {
-      "id": "description",
+      "id": "notes",
       "required": "0",
-      "maxLength": 255
+      "maxLength": 500
     },
     {
       "id": "faxNumber",
       "required": "0",
       "maxLength": 15
-    },
-    {
-      "id": "delFlg",
-      "required": "0",
-      "maxLength": 1
     }
   ]
 }

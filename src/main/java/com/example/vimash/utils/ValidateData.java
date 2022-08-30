@@ -82,10 +82,14 @@ public class ValidateData {
         String id = check.getId();
         String value = DataUtil.getJsonString(json, id);
 
-        if(DataUtil.isEmpty(value)){
-            throw new ApiValidateException(Constants.STATUS_SYSTEM_ERROR, id,
-                    "Field bị null");
+        if(check.isNotNull()){
+            if(DataUtil.isEmpty(value)){
+                throw new ApiValidateException(Constants.STATUS_SYSTEM_ERROR, id,
+                        "Field bị null");
+            }
         }
+
+
 
         if (check.getMaxLength() > 0) {
             if (!DataUtil.checkMaxLength(value, check.getMaxLength())) {

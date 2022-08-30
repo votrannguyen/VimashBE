@@ -48,7 +48,7 @@ public class DataUtil {
         return json;
     }
     public static String getJsonString(JsonObject json, String memberName) {
-        return getJsonString(json, memberName, null);
+        return getJsonString(json, memberName,  null);
     }
     public static String getJsonString(@NotNull JsonElement jsonElement, String memberName) {
         JsonObject json = jsonElement.getAsJsonObject();
@@ -104,4 +104,9 @@ public class DataUtil {
         Matcher matcher = pattern.matcher(value);
         return matcher.matches();
     }
+
+    public static boolean hasMember(JsonObject json, String memberName) {
+        return json.has(memberName);
+    }
+
 }
