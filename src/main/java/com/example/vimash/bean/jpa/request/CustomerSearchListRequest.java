@@ -45,7 +45,7 @@ public class CustomerSearchListRequest extends PageRequest{
             System.out.println(code2);
             System.out.println(code1);
             if (this.code1 != null && this.code2 != null) {
-                sqlBetween.append(String.format(" AND ( c.customerCode BETWEEN %s AND %s ) ",code1, code2));
+                sqlBetween.append(String.format(" AND ( c.customerCode BETWEEN '%s' AND '%s' ) ",code1, code2));
             }
             if (sqlBetween.length() > 0) {
                 sql.append(sqlBetween);

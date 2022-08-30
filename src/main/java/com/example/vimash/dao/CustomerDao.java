@@ -7,7 +7,7 @@ import com.example.vimash.bean.jpa.request.CustomerSearchListRequest;
 import java.util.List;
 
 public interface CustomerDao {
-    List<CustomerEntity> getAllCustomer(String name, String code1, String code2, Integer page, Integer size);
+    List<CustomerEntity> getAllCustomer();
 
     public CustomerIPageResponse findAll(CustomerSearchListRequest search);
 }

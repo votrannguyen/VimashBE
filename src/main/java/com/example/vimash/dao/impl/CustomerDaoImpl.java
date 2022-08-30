@@ -21,20 +21,13 @@ public class CustomerDaoImpl extends AbstractBaseDao implements CustomerDao {
 
 
     @Override
-    public List<CustomerEntity> getAllCustomer(String name, String code1, String code2, Integer page, Integer size) {
+    public List<CustomerEntity> getAllCustomer() {
         List<CustomerEntity> companyList =null;
         StringBuilder sql = new StringBuilder();
-        sql.append("select c from CustomerEntity c where del_flg = 0 ");
-        if (!DataUtil.isEmpty(name)) {
-            sql.append(" and customer_name like '%"+name+"%'");
-        }
-        if (!DataUtil.isEmpty(code1) && !DataUtil.isEmpty(code2)) {
-            sql.append(" and (customerCode between '"+code1+"' and '"+code2+"')");
-        }
-        Integer firstResult = (page - 1) * size;
+        sql.append("select c from CustomerEntity c");
         companyList = entityManager.createQuery(sql.toString(),CustomerEntity.class)
-                .setFirstResult(firstResult)
-                .setMaxResults(size)
+                .setFirstResult(1)
+                .setMaxResults(10)
                 .getResultList();
         return companyList;
     }

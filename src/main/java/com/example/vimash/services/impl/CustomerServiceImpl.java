@@ -47,7 +47,6 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public ResultBean getCustomer(String json) throws ApiValidateException, Exception {
         JsonObject jsonObject = DataUtil.getJsonObject(json);
-        System.out.println(jsonObject);
         String code1 = DataUtil.getJsonString(jsonObject, "code1");
         String code2 = DataUtil.getJsonString(jsonObject, "code2");
         String name = DataUtil.getJsonString(jsonObject, "name");
