@@ -18,8 +18,8 @@ public class CustomerController {
 
     @Resource
     private CustomerService customerService;
-    @RequestMapping(value = "/api/customer", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<ResultBean> getCustomer(@RequestBody(required = false) String json){
+    @RequestMapping(value = "/api/customers", method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<ResultBean> getCustomer(@RequestBody String json){
 
         ResultBean resultBean = null;
         try {
