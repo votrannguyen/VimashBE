@@ -18,19 +18,25 @@ public class CustomerSearchListRequest extends PageRequest{
                         sqlWhere.append(String.format(" AND c.customerName LIKE %s", v));
                         break;
                     default:
-                        if (v instanceof String) {
-                            String value = (String) v;
-                            if (value.startsWith("%") || value.endsWith("%")) {
-                                sqlWhere.append(String.format(" AND c.customerName.%s LIKE :%s ", k, v));
-                            } else {
-                                sqlWhere.append(String.format(" AND c.customerName.%s = :%s ", k, v));
-                            }
-                        }
+//                        if (v instanceof String) {
+//                            String value = (String) v;
+//                            if (value.startsWith("%") || value.endsWith("%")) {
+//                                sqlWhere.append(String.format(" AND c.customerName.%s LIKE :%s ", k, v));
+//                            } else {
+//                                sqlWhere.append(String.format(" AND c.customerName.%s = :%s ", k, v));
+//                            }
+//                        }
+                        return;
                 }
             });
             if (sqlWhere.length() > 0) {
-                sql.append(sqlWhere);
+                sql.append(" where 1=1 ").append(sqlWhere);
+                appendBetween(sql);
             }
+        } else {
+
+        sql.append(" where 1=1 ");
+        appendBetween(sql);
         }
     }
 
@@ -52,8 +58,6 @@ public class CustomerSearchListRequest extends PageRequest{
         sql.append("SELECT c");
         sql.append(" FROM ");
         sql.append(" CustomerEntity c ");
-        sql.append(" WHERE 1=1 ");
-        appendBetween(sql);
         appendCondition(sql);
         return sql;
     }

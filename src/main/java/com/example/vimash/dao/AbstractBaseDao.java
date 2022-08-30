@@ -42,7 +42,8 @@ public abstract class AbstractBaseDao {
         List<CustomerEntity> list = query.getResultList();
         List<CustomerResponse> lrsp = new ArrayList<>();
         list.stream().forEach(l -> {
-            CustomerResponse lrspp = new CustomerResponse(l.getCustomerCode(),l.getPostCode(),
+            CustomerResponse lrspp = new CustomerResponse(l.getCustomerId(),l.getCustomerCode(),
+                    l.getPostCode(),
                     l.getCustomerName(), l.getPicName(), l.getAddress1(), l.getPhoneNumber(),
                     l.getFaxNumber(), l.getLeadTime(), l.getRouteCode(), l.getCourseCode());
             lrsp.add(lrspp);

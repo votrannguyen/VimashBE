@@ -47,25 +47,21 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public ResultBean getCustomer(String json) throws ApiValidateException, Exception {
         JsonObject jsonObject = DataUtil.getJsonObject(json);
+        System.out.println(jsonObject);
         String code1 = DataUtil.getJsonString(jsonObject, "code1");
         String code2 = DataUtil.getJsonString(jsonObject, "code2");
         String name = DataUtil.getJsonString(jsonObject, "name");
         Integer page = DataUtil.getJsonInteger(jsonObject, "page");
         Integer size = DataUtil.getJsonInteger(jsonObject, "size");
-        if (page == null) {
-            page = 1;
-        }
-        if (size == null) {
-            size = 10;
-        }
+        if (page == null) {page = 1;}
+        if (size == null) {size = 10;}
         CustomerSearchListRequest searchListRequest = new CustomerSearchListRequest();
         searchListRequest.currentPage(page);
         searchListRequest.noRecordInPage(size);
         searchListRequest.addSearchField("name", name, false); //DataUtil.decodeURL(name)
-        if (null != code1 && null != code2) {
-            searchListRequest.setCode1(code1);
-            searchListRequest.setCode2(code2);
-        }
+        searchListRequest.setCode1(code1);
+        searchListRequest.setCode2(code2);
+
         CustomerIPageResponse response = customerDao.findAll(searchListRequest);
         return new ResultBean(response, Constants.STATUS_OK, Constants.MESSAGE_OK);
     }
