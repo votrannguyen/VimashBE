@@ -120,4 +120,23 @@ public class DataUtil {
         Matcher matcher = pattern.matcher(value);
         return matcher.matches();
     }
+
+    public static Integer getJsonInteger(JsonObject json, String memberName) {
+        return getJsonInteger(json, memberName, null);
+    }
+
+    /**
+     * Get data to JSON, return Integer
+     * @return Integer
+     */
+    public static Integer getJsonInteger(JsonObject json, String memberName, Integer defaultValue) {
+        if (!json.has(memberName) || json.get(memberName).isJsonNull()) {
+            return defaultValue;
+        }
+        try {
+            return json.get(memberName).getAsInt();
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
 }

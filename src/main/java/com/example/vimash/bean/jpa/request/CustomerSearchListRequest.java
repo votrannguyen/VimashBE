@@ -14,6 +14,7 @@ public class CustomerSearchListRequest extends PageRequest{
             this.searchFields.forEach((k, v) -> {
                 switch (k) {
                     case "name":
+                        System.out.println("case name");
                         sqlWhere.append(String.format(" AND c.customerName LIKE %s", v));
                         break;
                     default:
@@ -38,7 +39,7 @@ public class CustomerSearchListRequest extends PageRequest{
             System.out.println(code2);
             System.out.println(code1);
             if (this.code1 != null && this.code2 != null) {
-                sqlBetween.append(String.format(" AND c.customerCode BETWEEN %s AND %s",code1, code2));
+                sqlBetween.append(String.format(" AND ( c.customerCode BETWEEN %s AND %s ) ",code1, code2));
             }
             if (sqlBetween.length() > 0) {
                 sql.append(sqlBetween);
@@ -52,8 +53,8 @@ public class CustomerSearchListRequest extends PageRequest{
         sql.append(" FROM ");
         sql.append(" CustomerEntity c ");
         sql.append(" WHERE 1=1 ");
-        appendCondition(sql);
         appendBetween(sql);
+        appendCondition(sql);
         return sql;
     }
 

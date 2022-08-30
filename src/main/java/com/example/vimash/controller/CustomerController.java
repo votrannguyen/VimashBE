@@ -19,15 +19,11 @@ public class CustomerController {
     @Resource
     private CustomerService customerService;
     @RequestMapping(value = "/api/customer", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<ResultBean> getCustomer(
-            @RequestParam (defaultValue = "") String name
-            ,@RequestParam (defaultValue = "10")Integer size
-            ,@RequestParam (defaultValue = "1")Integer page,
-            @RequestBody String json){
+    public ResponseEntity<ResultBean> getCustomer(@RequestBody String json){
 
         ResultBean resultBean = null;
         try {
-            resultBean = customerService.getCustomer(name, page, size, json);
+            resultBean = customerService.getCustomer(json);
         } catch (ApiValidateException e) {
             resultBean = new ResultBean(e.getCode(), e.getField(), e.getMessage());
             return new ResponseEntity<ResultBean>(resultBean, HttpStatus.BAD_REQUEST);
