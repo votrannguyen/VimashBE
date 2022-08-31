@@ -5,9 +5,10 @@ import javax.annotation.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.vimash.bean.jpa.ResultBean;
@@ -15,21 +16,19 @@ import com.example.vimash.services.DeliveryService;
 import com.example.vimash.utils.ApiValidateException;
 import com.example.vimash.utils.Constants;
 
+@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
 public class DeliveryController {
-	
+
 	@Resource
 	private DeliveryService deliveryService;
 
 	@RequestMapping(value = "/api/delivery", method = RequestMethod.GET, produces = {
 			MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<ResultBean> getCustomer(
-			@RequestParam Integer customer_id
-			,@RequestParam(defaultValue = "10") Integer size
-			,@RequestParam(defaultValue = "1") Integer page) {
+	public ResponseEntity<ResultBean> getCustomer(@RequestBody String jsonString) {
 		ResultBean resultBean = null;
 		try {
-			resultBean = deliveryService.getDelivery(customer_id, page, size);
+			resultBean = deliveryService.getDelivery(jsonString);
 		} catch (ApiValidateException e) {
 			resultBean = new ResultBean(e.getCode(), e.getField(), e.getMessage());
 			return new ResponseEntity<ResultBean>(resultBean, HttpStatus.BAD_REQUEST);

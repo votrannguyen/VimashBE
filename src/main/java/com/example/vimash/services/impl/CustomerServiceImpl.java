@@ -59,6 +59,9 @@ public class CustomerServiceImpl implements CustomerService {
 		searchListRequest.setCode2(code2);
 
 		CustomerIPageResponse response = customerDao.findAll(searchListRequest);
+		if (response.getTotalPage() < page) {
+			return new ResultBean(response, Constants.STATUS_BAD_REQUEST, Constants.MESSAGE_SYSTEM_ERROR);
+		}
 		return new ResultBean(response, Constants.STATUS_OK, Constants.MESSAGE_OK);
 	}
 

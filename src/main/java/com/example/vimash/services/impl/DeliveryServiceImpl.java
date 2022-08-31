@@ -14,6 +14,9 @@ import com.example.vimash.dao.DeliveryDao;
 import com.example.vimash.services.DeliveryService;
 import com.example.vimash.utils.ApiValidateException;
 import com.example.vimash.utils.Constants;
+import com.example.vimash.utils.DataUtil;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 @Service
 @Transactional(rollbackFor = { ApiValidateException.class, Exception.class })
@@ -22,10 +25,25 @@ public class DeliveryServiceImpl implements DeliveryService {
 	private DeliveryDao deliveryDao;
 
 	@Override
-	public ResultBean getDelivery(Integer customerId, Integer page, Integer size)
-			throws ApiValidateException, Exception {
+	public ResultBean getDelivery(String jsonString) throws ApiValidateException, Exception {
+		JsonObject jsonObject = new Gson().fromJson(jsonString, JsonObject.class);
+		Integer customerId = DataUtil.getJsonInteger(jsonObject, "customerId");
+		Integer page = DataUtil.getJsonInteger(jsonObject, "page");
+		Integer size = DataUtil.getJsonInteger(jsonObject, "size");
 		List<DeliveryEntity> deliveryList = null;
+		if (customerId == null) {
+			return new ResultBean(Constants.STATUS_NOT_FOUND, Constants.STATUS_SYSTEM_ERROR);
+		}
+		if (page == null) {
+			page = 1;
+		}
+		if (size == null) {
+			size = 10;
+		}
 		deliveryList = deliveryDao.getAllDelivery(customerId, page, size);
+		if (deliveryList.size() == 0) {
+			return new ResultBean(Constants.STATUS_NOT_FOUND, Constants.MESSAGE_SYSTEM_ERROR);
+		}
 		List<DeliveryReponse> deliveryReponsesList = deliveryList.stream().map(deliveryEntity -> {
 			return new DeliveryReponse(deliveryEntity.getDeliveryId(), deliveryEntity.getDestinationName(),
 					deliveryEntity.getPicName(), deliveryEntity.getPostCode(), deliveryEntity.getAddress1(),
