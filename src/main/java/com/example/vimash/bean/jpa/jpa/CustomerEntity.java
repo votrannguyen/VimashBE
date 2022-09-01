@@ -37,7 +37,7 @@ public class CustomerEntity implements Serializable {
     //Create By
     @Column(name = "create_by")
     @JsonProperty("createBy")
-    private String createBy;
+    private Integer createBy;
 
     //Create Date
     @Column(name = "create_date")
@@ -47,7 +47,7 @@ public class CustomerEntity implements Serializable {
     //Update By
     @Column(name = "update_by")
     @JsonProperty("updateBy")
-    private String updateBy;
+    private Integer updateBy;
 
     //Update Date
     @Column(name = "update_date")
@@ -113,7 +113,7 @@ public class CustomerEntity implements Serializable {
     }
 
     //Contructor có ID
-    public CustomerEntity(Long customerId, String customerName, String createBy, Date createDate, String updateBy,
+    public CustomerEntity(Long customerId, String customerName, Integer createBy, Date createDate, Integer updateBy,
                           Date updateDate, String routeCode, String courseCode, String telephone, String faxNumber,
                           String zipCode, String address1, String address2, String address3, String address4,
                           String description, String delFlg) {
@@ -137,7 +137,7 @@ public class CustomerEntity implements Serializable {
     }
 
     //Contructor không có Id
-    public CustomerEntity(String customerName, String createBy, Date createDate, String updateBy, Date updateDate,
+    public CustomerEntity(String customerName, Integer createBy, Date createDate, Integer updateBy, Date updateDate,
                           String routeCode, String courseCode, String telephone, String faxNumber, String zipCode,
                           String address1, String address2, String address3, String address4, String description,
                           String delFlg) {
@@ -175,11 +175,11 @@ public class CustomerEntity implements Serializable {
         this.customerName = customerName;
     }
 
-    public String getCreateBy() {
+    public Integer getCreateBy() {
         return createBy;
     }
 
-    public void setCreateBy(String createBy) {
+    public void setCreateBy(Integer createBy) {
         this.createBy = createBy;
     }
 
@@ -191,11 +191,11 @@ public class CustomerEntity implements Serializable {
         this.createDate = createDate;
     }
 
-    public String getUpdateBy() {
+    public Integer getUpdateBy() {
         return updateBy;
     }
 
-    public void setUpdateBy(String updateBy) {
+    public void setUpdateBy(Integer updateBy) {
         this.updateBy = updateBy;
     }
 
@@ -295,3 +295,4 @@ public class CustomerEntity implements Serializable {
         this.delFlg = delFlg;
     }
 }
+

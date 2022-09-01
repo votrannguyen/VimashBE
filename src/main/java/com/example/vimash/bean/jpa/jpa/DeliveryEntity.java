@@ -71,7 +71,7 @@ public class DeliveryEntity implements Serializable {
     //Create By
     @Column(name = "create_by")
     @JsonProperty("createBy")
-    private String createBy;
+    private Integer createBy;
 
     //Create Date
     @Column(name = "create_date")
@@ -81,7 +81,7 @@ public class DeliveryEntity implements Serializable {
     //Update By
     @Column(name = "update_by")
     @JsonProperty("updateBy")
-    private String updateBy;
+    private Integer updateBy;
 
     //Update Date
     @Column(name = "update_date")
@@ -118,8 +118,8 @@ public class DeliveryEntity implements Serializable {
 
     //Contructor có Id
     public DeliveryEntity(Long deliveryId, String deliveryName, String telephone, String faxNumber, String zipCode,
-                          String address1, String address2, String address3, String address4, String createBy, Date createDate,
-                          String updateBy, Date updateDate, String routeCode, String courseCode, String description,
+                          String address1, String address2, String address3, String address4, Integer createBy, Date createDate,
+                          Integer updateBy, Date updateDate, String routeCode, String courseCode, String description,
                           Integer customerId, String delFlg) {
         this.deliveryId = deliveryId;
         this.deliveryName = deliveryName;
@@ -142,8 +142,8 @@ public class DeliveryEntity implements Serializable {
     }
 
     public DeliveryEntity(String deliveryName, String telephone, String faxNumber, String zipCode, String address1,
-                          String address2, String address3, String address4, String createBy, Date createDate,
-                          String updateBy, Date updateDate, String routeCode, String courseCode, String description,
+                          String address2, String address3, String address4, Integer createBy, Date createDate,
+                          Integer updateBy, Date updateDate, String routeCode, String courseCode, String description,
                           Integer customerId, String delFlg) {
         this.deliveryName = deliveryName;
         this.telephone = telephone;
@@ -236,11 +236,11 @@ public class DeliveryEntity implements Serializable {
         this.address4 = address4;
     }
 
-    public String getCreateBy() {
+    public Integer getCreateBy() {
         return createBy;
     }
 
-    public void setCreateBy(String createBy) {
+    public void setCreateBy(Integer createBy) {
         this.createBy = createBy;
     }
 
@@ -252,11 +252,11 @@ public class DeliveryEntity implements Serializable {
         this.createDate = createDate;
     }
 
-    public String getUpdateBy() {
+    public Integer getUpdateBy() {
         return updateBy;
     }
 
-    public void setUpdateBy(String updateBy) {
+    public void setUpdateBy(Integer updateBy) {
         this.updateBy = updateBy;
     }
 
