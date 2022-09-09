@@ -17,20 +17,27 @@
       "id": "createBy",
       "required": "0",
       "maxLength": 6,
-      "number": "\\d+",
-      "isNotNull": true
+      "number": "\\d+"
+    },
+    {
+      "id": "updateBy",
+      "required": "0",
+      "maxLength": 6,
+      "number": "\\d+"
     },
     {
       "id": "phoneNumber",
       "required": "0",
       "maxLength": 255,
-      "isNotNull": true
+      "isNotNull": true,
+      "isPhone" : true
     },
     {
       "id": "postCode",
       "required": "0",
-      "maxLength": 255,
-      "isNotNull": true
+      "maxLength": 8,
+      "isNotNull": true,
+      "checkZipCode": true
     },
     {
       "id": "address1",

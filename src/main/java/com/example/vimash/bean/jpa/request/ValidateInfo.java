@@ -27,7 +27,20 @@ public class ValidateInfo {
 
     private boolean isNotNull = false;
 
+    private boolean checkZipCode = false;
+    private boolean isPhone = false;
+
+    public boolean isPhone() {
+        return isPhone;
+    }
+
+    public void setPhone(boolean phone) {
+        isPhone = phone;
+    }
+
     private String min = null;
+
+
 
     private String minEqual = null;
 
@@ -189,5 +202,13 @@ public class ValidateInfo {
 
     public void setNotNull(boolean aNotNull) {
         isNotNull = aNotNull;
+    }
+
+    public boolean isCheckZipCode() {
+        return checkZipCode;
+    }
+
+    public void setCheckZipCode(boolean checkZipCode) {
+        this.checkZipCode = checkZipCode;
     }
 }

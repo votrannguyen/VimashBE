@@ -17,8 +17,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Stream;
 
-@Service
-@Transactional(rollbackFor = { ApiValidateException.class, Exception.class })
+    @Service
+    @Transactional(rollbackFor = { ApiValidateException.class, Exception.class })
 public class CustomerServiceImpl implements CustomerService {
     public static final String FILE_JSON_VALIDATE = "customer.json";
     @Autowired
@@ -37,22 +37,67 @@ public class CustomerServiceImpl implements CustomerService {
         CustomerResponse customerResponse = customerDao.finByIdCustomer(id);
         return new ResultBean(customerResponse, Constants.STATUS_OK, Constants.MESSAGE_OK);
     }
-    CustomerEntity customerEntity = new CustomerEntity();
+
+    @Override
+    public ResultBean findByCustomerCode(String code) throws ApiValidateException, Exception {
+        customerDao.findByCustomerCode(code);
+        return new ResultBean(code, Constants.STATUS_OK, Constants.MESSAGE_OK);
+    }
+
     @Override
     public ResultBean addCustomer(String customer) throws ApiValidateException, Exception {
-
+        CustomerEntity customerEntity = new CustomerEntity();
 
         JsonObject jsonObject = DataUtil.getJsonObject(customer);
-        //ValidateData.validate(FILE_JSON_VALIDATE, jsonObject, false);
+        ValidateData.validate(FILE_JSON_VALIDATE, jsonObject, false);
 
-        this.getCustomerEntity(jsonObject,customerEntity);
+        customerEntity = getCustomerEntity(jsonObject,customerEntity);
+        customerEntity.setCompanyId(Long.valueOf(4));
+        customerEntity.setUpdateDate(null);
+        customerDao.findByCustomerCode(customerEntity.getCustomerCode());
+
+        customerDao.addCustomer(customerEntity);
 
         return new ResultBean(customerEntity, Constants.STATUS_OK, Constants.MESSAGE_OK);
+    }
+
+    @Override
+    public ResultBean updateCustomer(String customer) throws ApiValidateException, Exception {
+        CustomerEntity customerEntity = new CustomerEntity();
+
+        JsonObject jsonObject = DataUtil.getJsonObject(customer);
+        ValidateData.validate(FILE_JSON_VALIDATE, jsonObject, false);
+
+        customerEntity = getCustomerEntity(jsonObject,customerEntity);
+        customerEntity.setCompanyId(Long.valueOf(4));
+        customerEntity.setUpdateDate(null);
+
+
+        try{
+            CustomerResponse customerResponse = customerDao.finByIdCustomer(Integer.parseInt(String.valueOf(customerEntity.getCustomerId())));
+            customerEntity.setCreateDate(customerResponse.getCreateDate());
+        }catch (Exception e){
+            return new ResultBean("customerEntity", Constants.STATUS_SYSTEM_ERROR, Constants.MESSAGE_OK);
+        }
+
+        customerDao.findByCustomerCode(customerEntity.getCustomerCode());
+        customerDao.updateCustomer(customerEntity);
+
+        return new ResultBean(customerEntity, Constants.STATUS_OK, Constants.MESSAGE_OK);
+    }
+
+    @Override
+    public ResultBean deleteCustomer(Integer id) throws ApiValidateException, Exception {
+        customerDao.deleteCustomer(id);
+        return new ResultBean(id, Constants.STATUS_OK, Constants.MESSAGE_OK);
     }
 
     private CustomerEntity getCustomerEntity(JsonObject jsonCustomer, CustomerEntity customerEntity) throws ApiValidateException{
         if(DataUtil.hasMember(jsonCustomer, ConstantColumns.CUSTOMER_NAME)){
             customerEntity.setCustomerName(DataUtil.getJsonString(jsonCustomer,ConstantColumns.CUSTOMER_NAME));
+        }
+        if(DataUtil.hasMember(jsonCustomer, ConstantColumns.CUSTOMER_ID)){
+            customerEntity.setCustomerId(Long.valueOf(DataUtil.getJsonString(jsonCustomer, ConstantColumns.CUSTOMER_ID)));
         }
         if(DataUtil.hasMember(jsonCustomer, ConstantColumns.CUSTOMER_CODE)){
             customerEntity.setCustomerCode(DataUtil.getJsonString(jsonCustomer,ConstantColumns.CUSTOMER_CODE));
@@ -61,42 +106,49 @@ public class CustomerServiceImpl implements CustomerService {
             customerEntity.setFaxNumber(DataUtil.getJsonString(jsonCustomer,ConstantColumns.FAX_NUMBER));
         }
         if(DataUtil.hasMember(jsonCustomer, ConstantColumns.POST_CODE)){
-            customerEntity.setCustomerName(DataUtil.getJsonString(jsonCustomer,ConstantColumns.POST_CODE));
+            customerEntity.setPostCode(DataUtil.getJsonString(jsonCustomer,ConstantColumns.POST_CODE));
         }
         if(DataUtil.hasMember(jsonCustomer, ConstantColumns.CREATE_BY)){
-            customerEntity.setCustomerName(DataUtil.getJsonString(jsonCustomer,ConstantColumns.CREATE_BY));
+            if(!(DataUtil.getJsonString(jsonCustomer,ConstantColumns.CREATE_BY) == null)){
+                customerEntity.setCreateBy(Integer.parseInt(DataUtil.getJsonString(jsonCustomer,ConstantColumns.CREATE_BY)));
+            }
+
         }
         DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         Date now = new Date();
         customerEntity.setCreateDate(now);
 
         if(DataUtil.hasMember(jsonCustomer, ConstantColumns.UPDATE_BY)){
-            customerEntity.setCustomerName(DataUtil.getJsonString(jsonCustomer,ConstantColumns.UPDATE_BY));
+            if(!(DataUtil.getJsonString(jsonCustomer,ConstantColumns.UPDATE_BY) == null)){
+                customerEntity.setUpdateBy(Integer.parseInt(DataUtil.getJsonString(jsonCustomer,ConstantColumns.UPDATE_BY)));
+            }
+
         }
+
         customerEntity.setUpdateDate(now);
         if(DataUtil.hasMember(jsonCustomer, ConstantColumns.ROUTE_CODE)){
-            customerEntity.setCustomerName(DataUtil.getJsonString(jsonCustomer,ConstantColumns.ROUTE_CODE));
+            customerEntity.setRouteCode(DataUtil.getJsonString(jsonCustomer,ConstantColumns.ROUTE_CODE));
         }
         if(DataUtil.hasMember(jsonCustomer, ConstantColumns.COURSE_CODE)){
-            customerEntity.setCustomerName(DataUtil.getJsonString(jsonCustomer,ConstantColumns.COURSE_CODE));
+            customerEntity.setCourseCode(DataUtil.getJsonString(jsonCustomer,ConstantColumns.COURSE_CODE));
         }
         if(DataUtil.hasMember(jsonCustomer, ConstantColumns.PHONE_NUMBER)){
-            customerEntity.setCustomerName(DataUtil.getJsonString(jsonCustomer,ConstantColumns.PHONE_NUMBER));
+            customerEntity.setPhoneNumber(DataUtil.getJsonString(jsonCustomer,ConstantColumns.PHONE_NUMBER));
         }
         if(DataUtil.hasMember(jsonCustomer, ConstantColumns.ADDRESS1)){
-            customerEntity.setCustomerName(DataUtil.getJsonString(jsonCustomer,ConstantColumns.ADDRESS1));
+            customerEntity.setAddress1(DataUtil.getJsonString(jsonCustomer,ConstantColumns.ADDRESS1));
         }
         if(DataUtil.hasMember(jsonCustomer, ConstantColumns.ADDRESS2)){
-            customerEntity.setCustomerName(DataUtil.getJsonString(jsonCustomer,ConstantColumns.ADDRESS2));
+            customerEntity.setAddress2(DataUtil.getJsonString(jsonCustomer,ConstantColumns.ADDRESS2));
         }
         if(DataUtil.hasMember(jsonCustomer, ConstantColumns.ADDRESS3)){
-            customerEntity.setCustomerName(DataUtil.getJsonString(jsonCustomer,ConstantColumns.ADDRESS3));
+            customerEntity.setAddress3(DataUtil.getJsonString(jsonCustomer,ConstantColumns.ADDRESS3));
         }
         if(DataUtil.hasMember(jsonCustomer, ConstantColumns.ADDRESS4)){
-            customerEntity.setCustomerName(DataUtil.getJsonString(jsonCustomer,ConstantColumns.ADDRESS4));
+            customerEntity.setAddress4(DataUtil.getJsonString(jsonCustomer,ConstantColumns.ADDRESS4));
         }
         if(DataUtil.hasMember(jsonCustomer, ConstantColumns.NOTES)){
-            customerEntity.setCustomerName(DataUtil.getJsonString(jsonCustomer,ConstantColumns.NOTES));
+            customerEntity.setNotes(DataUtil.getJsonString(jsonCustomer,ConstantColumns.NOTES));
         }
         customerEntity.setDelFlg("0");
 

@@ -89,7 +89,19 @@ public class ValidateData {
             }
         }
 
+        if(check.isCheckZipCode()){
+            if(!(DataUtil.checkZipCode(value))){
+                throw new ApiValidateException(Constants.STATUS_SYSTEM_ERROR, id,
+                        "zip code bị sai kí tự");
+            }
+        }
 
+        if(check.isPhone()){
+            if(!(DataUtil.isPhoneNumber(value))){
+                throw new ApiValidateException(Constants.STATUS_SYSTEM_ERROR, id,
+                        "phone khong dung dinh dang");
+            }
+        }
 
         if (check.getMaxLength() > 0) {
             if (!DataUtil.checkMaxLength(value, check.getMaxLength())) {

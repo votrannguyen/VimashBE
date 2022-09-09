@@ -62,6 +62,11 @@ public class DataUtil {
     }
 
     public static boolean checkMaxLength(String value, int maxlength) {
+
+        if(value == null){
+            return true;
+        }
+
         if (value.isEmpty() || value.length() > maxlength) {
             return false;
         }
@@ -105,8 +110,21 @@ public class DataUtil {
         return matcher.matches();
     }
 
+    public static boolean checkZipCode(String number) {
+        Pattern pattern = Pattern.compile("〒?[0-9]{3}-?[0-9]{4}");
+        Matcher matcher = pattern.matcher(number);
+        return number.length() <= 8 && matcher.matches();
+    }
+
     public static boolean hasMember(JsonObject json, String memberName) {
         return json.has(memberName);
     }
-
+    public static Integer getJsonInteger(JsonObject json, String memberName, Object o) {
+        return getJsonInteger(json, memberName, null);
+    }
+    public static boolean isPhoneNumber(String tel) {
+        Pattern pattern = Pattern.compile("^[0-9]{1,13}$");
+        Boolean a = pattern.matcher(tel).matches();
+        return a;
+    }
 }
