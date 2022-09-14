@@ -71,4 +71,10 @@ public class CustomerServiceImpl implements CustomerService {
         ValidateData.validate(FILE_JSON_VALIDATE, jsonObject, false);
         return new ResultBean("200", "success", "success");
     }
+
+	@Override
+	public ResultBean deleteCustomer(Integer id) throws ApiValidateException, Exception {
+		 customerDao.deleteCustomer(id);
+	        return new ResultBean(id, Constants.STATUS_OK, Constants.MESSAGE_OK);
+	}
 }

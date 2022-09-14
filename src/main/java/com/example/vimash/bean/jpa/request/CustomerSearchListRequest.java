@@ -35,7 +35,7 @@ public class CustomerSearchListRequest extends PageRequest{
             }
         } else {
 
-        sql.append(" where 1=1 ");
+        sql.append(" where del_flg = 0 ");
         appendBetween(sql);
         }
     }

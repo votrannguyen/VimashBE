@@ -51,4 +51,20 @@ public class CustomerController {
         }
         return new ResponseEntity<ResultBean>(resultBean, HttpStatus.OK);
     }
+    
+    @RequestMapping(value = "/api/customers/{id}", method = RequestMethod.DELETE, produces = { MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<ResultBean> deleteCustomer(@PathVariable  Integer id){
+        ResultBean resultBean = null;
+        try{
+            resultBean = customerService.deleteCustomer(id);
+
+        }
+        catch (ApiValidateException e) {
+            resultBean = new ResultBean(e.getCode(), e.getField(), e.getMessage());
+            return new ResponseEntity<ResultBean>(resultBean, HttpStatus.BAD_REQUEST);
+        }catch (Exception e) {
+            return new ResponseEntity<ResultBean>(resultBean, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<ResultBean>(resultBean, HttpStatus.OK);
+    }
 }
