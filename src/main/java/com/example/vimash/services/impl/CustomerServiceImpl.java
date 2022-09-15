@@ -2,7 +2,9 @@ package com.example.vimash.services.impl;
 
 import com.example.vimash.bean.jpa.ResultBean;
 import com.example.vimash.bean.jpa.jpa.CustomerEntity;
+import com.example.vimash.bean.jpa.request.CustomerSearchListRequest;
 import com.example.vimash.bean.jpa.response.CustomerResponse;
+import com.example.vimash.bean.jpa.response.customer.CustomerIPageResponse;
 import com.example.vimash.dao.CustomerDao;
 import com.example.vimash.services.CustomerService;
 import com.example.vimash.utils.*;
@@ -24,15 +26,28 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerDao customerDao;
 
-    @Override
-    public ResultBean getCustomer() throws ApiValidateException, Exception {
+        @Override
+        public ResultBean getCustomer(String json) throws ApiValidateException, Exception {
+            JsonObject jsonObject = DataUtil.getJsonObject(json);
+            String code1 = DataUtil.getJsonString(jsonObject, "code1");
+            String code2 = DataUtil.getJsonString(jsonObject, "code2");
+            String name = DataUtil.getJsonString(jsonObject, "name");
+            Integer page = DataUtil.getJsonIntegers(jsonObject, "page");
+            Integer size = DataUtil.getJsonIntegers(jsonObject, "size");
+            if (page == null) {page = 1;}
+            if (size == null) {size = 10;}
+            CustomerSearchListRequest searchListRequest = new CustomerSearchListRequest();
+            searchListRequest.currentPage(page);
+            searchListRequest.noRecordInPage(size);
+            searchListRequest.addSearchField("name", name, false); //DataUtil.decodeURL(name)
+            searchListRequest.setCode1(code1);
+            searchListRequest.setCode2(code2);
 
-        List<CustomerResponse> customerEntityList = null;
-        customerEntityList = customerDao.getAllCustomer();
-        return new ResultBean(customerEntityList, Constants.STATUS_OK, Constants.MESSAGE_OK);
-    }
+            CustomerIPageResponse response = customerDao.findAll(searchListRequest);
+            return new ResultBean(response, Constants.STATUS_OK, Constants.MESSAGE_OK);
+        }
 
-    @Override
+        @Override
     public ResultBean findByIdCustomer(Integer id) throws ApiValidateException, Exception {
         CustomerResponse customerResponse = customerDao.finByIdCustomer(id);
         return new ResultBean(customerResponse, Constants.STATUS_OK, Constants.MESSAGE_OK);

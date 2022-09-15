@@ -1,5 +1,6 @@
 package com.example.vimash.bean.jpa.response;
 
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
@@ -18,6 +19,9 @@ public class CustomerResponse implements Serializable {
     //Customer Name
     @JsonProperty("customerName")
     private String customerName;
+
+    @JsonProperty("picName")
+    private String picName;
 
     //Fax Number
     @JsonProperty("faxNumber")
@@ -76,6 +80,9 @@ public class CustomerResponse implements Serializable {
     @JsonProperty("address4")
     private String address4;
 
+    @JsonProperty("leadTime")
+    private Integer leadTime;
+
     //Description
     @JsonProperty("notes")
     private String notes;
@@ -108,9 +115,29 @@ public class CustomerResponse implements Serializable {
         this.notes = notes;
         this.delFlg = delFlg;
     }
+    public CustomerResponse(String customerCode, String customerName, String postCode, String picName, String address, String phoneNumber, String faxNumber, Integer leadTime, String routeCode, String courseCode) {
+        this.customerCode = customerCode;
+        this.customerName = customerName;
+        this.picName = picName;
+        this.postCode = postCode;
+        this.address1 = address;
+        this.phoneNumber = phoneNumber;
+        this.faxNumber = faxNumber;
+        this.leadTime = leadTime;
+        this.routeCode = routeCode;
+        this.courseCode = courseCode;
+    }
 
     public Long getCustomerId() {
         return customerId;
+    }
+
+    public String getPicName() {
+        return picName;
+    }
+
+    public void setPicName(String picName) {
+        this.picName = picName;
     }
 
     public void setCustomerId(Long customerId) {
@@ -254,5 +281,13 @@ public class CustomerResponse implements Serializable {
 
     public void setDelFlg(String delFlg) {
         this.delFlg = delFlg;
+    }
+
+    public Integer getLeadTime() {
+        return leadTime;
+    }
+
+    public void setLeadTime(Integer leadTime) {
+        this.leadTime = leadTime;
     }
 }

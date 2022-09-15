@@ -119,12 +119,25 @@ public class DataUtil {
     public static boolean hasMember(JsonObject json, String memberName) {
         return json.has(memberName);
     }
-    public static Integer getJsonInteger(JsonObject json, String memberName, Object o) {
-        return getJsonInteger(json, memberName, null);
+    public static Integer getJsonInteger(JsonObject json, String memberName) {
+        return getJsonInteger(json, memberName);
+    }
+    public static Integer getJsonIntegers(JsonObject json, String memberName) {
+        return getJsonInteger(json, memberName,null);
     }
     public static boolean isPhoneNumber(String tel) {
         Pattern pattern = Pattern.compile("^[0-9]{1,13}$");
         Boolean a = pattern.matcher(tel).matches();
         return a;
+    }
+    public static Integer getJsonInteger(JsonObject json, String memberName, Integer defaultValue) {
+        if (!json.has(memberName) || json.get(memberName).isJsonNull()) {
+            return defaultValue;
+        }
+        try {
+            return json.get(memberName).getAsInt();
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 }
