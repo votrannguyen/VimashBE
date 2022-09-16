@@ -45,15 +45,7 @@ public class CustomerServiceImpl implements CustomerService {
 //    }
 
     @Override
-    public ResultBean getCustomer(String json) throws ApiValidateException, Exception {
-        JsonObject jsonObject = DataUtil.getJsonObject(json);
-        String code1 = DataUtil.getJsonString(jsonObject, "code1");
-        String code2 = DataUtil.getJsonString(jsonObject, "code2");
-        String name = DataUtil.getJsonString(jsonObject, "name");
-        Integer page = DataUtil.getJsonInteger(jsonObject, "page");
-        Integer size = DataUtil.getJsonInteger(jsonObject, "size");
-        if (page == null) {page = 1;}
-        if (size == null) {size = 10;}
+    public ResultBean getCustomer(Integer page, Integer size, String name, String code1, String code2) throws ApiValidateException, Exception {
         CustomerSearchListRequest searchListRequest = new CustomerSearchListRequest();
         searchListRequest.currentPage(page);
         searchListRequest.noRecordInPage(size);

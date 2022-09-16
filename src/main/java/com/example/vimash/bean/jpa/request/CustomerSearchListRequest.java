@@ -30,21 +30,18 @@ public class CustomerSearchListRequest extends PageRequest{
                 }
             });
             if (sqlWhere.length() > 0) {
-                sql.append(" where 1=1 ").append(sqlWhere);
+                sql.append("where c.delFlg = 0 ").append(sqlWhere);
                 appendBetween(sql);
             }
         } else {
-
-        sql.append(" where 1=1 ");
-        appendBetween(sql);
+            sql.append("where c.delFlg = 0  ");
+            appendBetween(sql);
         }
     }
 
     protected void appendBetween(StringBuilder sql) {
             StringBuilder sqlBetween = new StringBuilder();
-            System.out.println(code2);
-            System.out.println(code1);
-            if (this.code1 != null && this.code2 != null) {
+            if (this.code1 != null && this.code2 != null && this.code1.trim().length() > 0 && this.code2.trim().length() > 0) {
                 sqlBetween.append(String.format(" AND ( c.customerCode BETWEEN '%s' AND '%s' ) ",code1, code2));
             }
             if (sqlBetween.length() > 0) {
