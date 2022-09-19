@@ -17,27 +17,11 @@ public class CustomerController {
 
     @Resource
     private CustomerService customerService;
-//    @RequestMapping(value = "/api/customer", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
-//    public ResponseEntity<ResultBean> getCustomer() {
-//        ResultBean resultBean = null;
-//        try {
-//            resultBean = customerService.getCustomer();
-//        } catch (ApiValidateException e) {
-//            resultBean = new ResultBean(e.getCode(), e.getField(), e.getMessage());
-//            return new ResponseEntity<ResultBean>(resultBean, HttpStatus.BAD_REQUEST);
-//        } catch (Exception ex) {
-//
-//            resultBean = new ResultBean(Constants.STATUS_SYSTEM_ERROR, Constants.MESSAGE_SYSTEM_ERROR);
-//            return new ResponseEntity<ResultBean>(resultBean, HttpStatus.BAD_REQUEST);
-//        }
-//        return new ResponseEntity<ResultBean>(resultBean, HttpStatus.OK);
-//    }
-    @RequestMapping(value = "/api/customers", method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<ResultBean> getCustomer(@RequestBody String json){
-
+    @RequestMapping(value = "/api/customer", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<ResultBean> getCustomer() {
         ResultBean resultBean = null;
         try {
-            resultBean = customerService.getCustomer(json);
+            resultBean = customerService.getCustomer();
         } catch (ApiValidateException e) {
             resultBean = new ResultBean(e.getCode(), e.getField(), e.getMessage());
             return new ResponseEntity<ResultBean>(resultBean, HttpStatus.BAD_REQUEST);
@@ -48,6 +32,22 @@ public class CustomerController {
         }
         return new ResponseEntity<ResultBean>(resultBean, HttpStatus.OK);
     }
+//    @RequestMapping(value = "/api/customers", method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE })
+//    public ResponseEntity<ResultBean> getCustomer(@RequestBody String json){
+//
+//        ResultBean resultBean = null;
+//        try {
+//            resultBean = customerService.getCustomer(json);
+//        } catch (ApiValidateException e) {
+//            resultBean = new ResultBean(e.getCode(), e.getField(), e.getMessage());
+//            return new ResponseEntity<ResultBean>(resultBean, HttpStatus.BAD_REQUEST);
+//        } catch (Exception ex) {
+//
+//            resultBean = new ResultBean(Constants.STATUS_SYSTEM_ERROR, Constants.MESSAGE_SYSTEM_ERROR);
+//            return new ResponseEntity<ResultBean>(resultBean, HttpStatus.BAD_REQUEST);
+//        }
+//        return new ResponseEntity<ResultBean>(resultBean, HttpStatus.OK);
+//    }
 
     @RequestMapping(value = "/api/customer/{id}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<ResultBean> finByIdCustomer(@PathVariable Integer id) {

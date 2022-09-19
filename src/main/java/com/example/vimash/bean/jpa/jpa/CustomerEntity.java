@@ -227,6 +227,24 @@ public class CustomerEntity implements Serializable {
         this.notes = notes;
         this.delFlg = delFlg;
     }
+    public CustomerEntity( String customerCode, String customerName, String faxNumber, String postCode, Integer createBy, Date createDate, Integer updateBy, Date updateDate, String routeCode, String courseCode, String phoneNumber, String address1, String address2, String address3, String address4, String notes, String delFlg) {
+        this.customerCode = customerCode;
+        this.customerName = customerName;
+        this.faxNumber = faxNumber;
+        this.postCode = postCode;
+        this.createBy = createBy;
+        this.updateBy = updateBy;
+        this.updateDate = updateDate;
+        this.routeCode = routeCode;
+        this.courseCode = courseCode;
+        this.phoneNumber = phoneNumber;
+        this.address1 = address1;
+        this.address2 = address2;
+        this.address3 = address3;
+        this.address4 = address4;
+        this.notes = notes;
+        this.delFlg = delFlg;
+    }
 
     public Long getCustomerId() {
         return customerId;
