@@ -29,10 +29,33 @@ public class CustomerEntity implements Serializable {
     @JsonProperty("customerId")
     private Long customerId;
 
+    // customer_code
+    @Column(name = "customer_code")
+    @JsonProperty("customerCode")
+    private String customerCode;
+
     //Customer Name
     @Column(name = "customer_name")
     @JsonProperty("customerName")
     private String customerName;
+
+    //pic Name
+    @Column(name = "pic_name")
+    @JsonProperty("picName")
+    private String picName;
+
+    //Fax Number
+    @JsonProperty("faxNumber")
+    private String faxNumber;
+
+    //lead time
+    @JsonProperty("leadTime")
+    private String leadTime;
+
+    //post code
+    @Column(name = "post_code")
+    @JsonProperty("postCode")
+    private String postCode;
 
     //Create By
     @Column(name = "create_by")
@@ -69,10 +92,10 @@ public class CustomerEntity implements Serializable {
     @JsonProperty("telephone")
     private String telephone;
 
-    //Fax Number
-    @Column(name = "fax_number")
-    @JsonProperty("faxNumber")
-    private String faxNumber;
+    // phone number
+    @Column(name = "phone_number")
+    @JsonProperty("phoneNumber")
+    private String phoneNumber;
 
     //Zip Code
     @Column(name = "zip_code")
@@ -111,188 +134,297 @@ public class CustomerEntity implements Serializable {
 
     public CustomerEntity() {
     }
-
+    
     //Contructor có ID
-    public CustomerEntity(Long customerId, String customerName, Integer createBy, Date createDate, Integer updateBy,
-                          Date updateDate, String routeCode, String courseCode, String telephone, String faxNumber,
-                          String zipCode, String address1, String address2, String address3, String address4,
-                          String description, String delFlg) {
-        this.customerId = customerId;
-        this.customerName = customerName;
-        this.createBy = createBy;
-        this.createDate = createDate;
-        this.updateBy = updateBy;
-        this.updateDate = updateDate;
-        this.routeCode = routeCode;
-        this.courseCode = courseCode;
-        this.telephone = telephone;
-        this.faxNumber = faxNumber;
-        this.zipCode = zipCode;
-        this.address1 = address1;
-        this.address2 = address2;
-        this.address3 = address3;
-        this.address4 = address4;
-        this.description = description;
-        this.delFlg = delFlg;
-    }
 
-    //Contructor không có Id
-    public CustomerEntity(String customerName, Integer createBy, Date createDate, Integer updateBy, Date updateDate,
-                          String routeCode, String courseCode, String telephone, String faxNumber, String zipCode,
-                          String address1, String address2, String address3, String address4, String description,
-                          String delFlg) {
-        this.customerName = customerName;
-        this.createBy = createBy;
-        this.createDate = createDate;
-        this.updateBy = updateBy;
-        this.updateDate = updateDate;
-        this.routeCode = routeCode;
-        this.courseCode = courseCode;
-        this.telephone = telephone;
-        this.faxNumber = faxNumber;
-        this.zipCode = zipCode;
-        this.address1 = address1;
-        this.address2 = address2;
-        this.address3 = address3;
-        this.address4 = address4;
-        this.description = description;
-        this.delFlg = delFlg;
-    }
+	/**
+	 * @param customerId
+	 * @param customerCode
+	 * @param customerName
+	 * @param picName
+	 * @param faxNumber
+	 * @param leadTime
+	 * @param postCode
+	 * @param createBy
+	 * @param createDate
+	 * @param updateBy
+	 * @param updateDate
+	 * @param routeCode
+	 * @param courseCode
+	 * @param telephone
+	 * @param phoneNumber
+	 * @param zipCode
+	 * @param address1
+	 * @param address2
+	 * @param address3
+	 * @param address4
+	 * @param description
+	 * @param delFlg
+	 */
+	public CustomerEntity(Long customerId, String customerCode, String customerName, String picName, String faxNumber,
+			String leadTime, String postCode, Integer createBy, Date createDate, Integer updateBy, Date updateDate,
+			String routeCode, String courseCode, String telephone, String phoneNumber, String zipCode, String address1,
+			String address2, String address3, String address4, String description, String delFlg) {
+		super();
+		this.customerId = customerId;
+		this.customerCode = customerCode;
+		this.customerName = customerName;
+		this.picName = picName;
+		this.faxNumber = faxNumber;
+		this.leadTime = leadTime;
+		this.postCode = postCode;
+		this.createBy = createBy;
+		this.createDate = createDate;
+		this.updateBy = updateBy;
+		this.updateDate = updateDate;
+		this.routeCode = routeCode;
+		this.courseCode = courseCode;
+		this.telephone = telephone;
+		this.phoneNumber = phoneNumber;
+		this.zipCode = zipCode;
+		this.address1 = address1;
+		this.address2 = address2;
+		this.address3 = address3;
+		this.address4 = address4;
+		this.description = description;
+		this.delFlg = delFlg;
+	}
+	
+	
+	//Contructor không có Id
 
-    public Long getCustomerId() {
-        return customerId;
-    }
+	/**
+	 * @param customerCode
+	 * @param customerName
+	 * @param picName
+	 * @param faxNumber
+	 * @param leadTime
+	 * @param postCode
+	 * @param createBy
+	 * @param createDate
+	 * @param updateBy
+	 * @param updateDate
+	 * @param routeCode
+	 * @param courseCode
+	 * @param telephone
+	 * @param phoneNumber
+	 * @param zipCode
+	 * @param address1
+	 * @param address2
+	 * @param address3
+	 * @param address4
+	 * @param description
+	 * @param delFlg
+	 */
+	public CustomerEntity(String customerCode, String customerName, String picName, String faxNumber, String leadTime,
+			String postCode, Integer createBy, Date createDate, Integer updateBy, Date updateDate, String routeCode,
+			String courseCode, String telephone, String phoneNumber, String zipCode, String address1, String address2,
+			String address3, String address4, String description, String delFlg) {
+		super();
+		this.customerCode = customerCode;
+		this.customerName = customerName;
+		this.picName = picName;
+		this.faxNumber = faxNumber;
+		this.leadTime = leadTime;
+		this.postCode = postCode;
+		this.createBy = createBy;
+		this.createDate = createDate;
+		this.updateBy = updateBy;
+		this.updateDate = updateDate;
+		this.routeCode = routeCode;
+		this.courseCode = courseCode;
+		this.telephone = telephone;
+		this.phoneNumber = phoneNumber;
+		this.zipCode = zipCode;
+		this.address1 = address1;
+		this.address2 = address2;
+		this.address3 = address3;
+		this.address4 = address4;
+		this.description = description;
+		this.delFlg = delFlg;
+	}
 
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
-    }
+	public Long getCustomerId() {
+		return customerId;
+	}
 
-    public String getCustomerName() {
-        return customerName;
-    }
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
+	}
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
+	public String getCustomerCode() {
+		return customerCode;
+	}
 
-    public Integer getCreateBy() {
-        return createBy;
-    }
+	public void setCustomerCode(String customerCode) {
+		this.customerCode = customerCode;
+	}
 
-    public void setCreateBy(Integer createBy) {
-        this.createBy = createBy;
-    }
+	public String getCustomerName() {
+		return customerName;
+	}
 
-    public Date getCreateDate() {
-        return createDate;
-    }
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
+	public String getPicName() {
+		return picName;
+	}
 
-    public Integer getUpdateBy() {
-        return updateBy;
-    }
+	public void setPicName(String picName) {
+		this.picName = picName;
+	}
 
-    public void setUpdateBy(Integer updateBy) {
-        this.updateBy = updateBy;
-    }
+	public String getFaxNumber() {
+		return faxNumber;
+	}
 
-    public Date getUpdateDate() {
-        return updateDate;
-    }
+	public void setFaxNumber(String faxNumber) {
+		this.faxNumber = faxNumber;
+	}
 
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
+	public String getLeadTime() {
+		return leadTime;
+	}
 
-    public String getRouteCode() {
-        return routeCode;
-    }
+	public void setLeadTime(String leadTime) {
+		this.leadTime = leadTime;
+	}
 
-    public void setRouteCode(String routeCode) {
-        this.routeCode = routeCode;
-    }
+	public String getPostCode() {
+		return postCode;
+	}
 
-    public String getCourseCode() {
-        return courseCode;
-    }
+	public void setPostCode(String postCode) {
+		this.postCode = postCode;
+	}
 
-    public void setCourseCode(String courseCode) {
-        this.courseCode = courseCode;
-    }
+	public Integer getCreateBy() {
+		return createBy;
+	}
 
-    public String getTelephone() {
-        return telephone;
-    }
+	public void setCreateBy(Integer createBy) {
+		this.createBy = createBy;
+	}
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
+	public Date getCreateDate() {
+		return createDate;
+	}
 
-    public String getFaxNumber() {
-        return faxNumber;
-    }
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
 
-    public void setFaxNumber(String faxNumber) {
-        this.faxNumber = faxNumber;
-    }
+	public Integer getUpdateBy() {
+		return updateBy;
+	}
 
-    public String getZipCode() {
-        return zipCode;
-    }
+	public void setUpdateBy(Integer updateBy) {
+		this.updateBy = updateBy;
+	}
 
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
+	public Date getUpdateDate() {
+		return updateDate;
+	}
 
-    public String getAddress1() {
-        return address1;
-    }
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
 
-    public void setAddress1(String address1) {
-        this.address1 = address1;
-    }
+	public String getRouteCode() {
+		return routeCode;
+	}
 
-    public String getAddress2() {
-        return address2;
-    }
+	public void setRouteCode(String routeCode) {
+		this.routeCode = routeCode;
+	}
 
-    public void setAddress2(String address2) {
-        this.address2 = address2;
-    }
+	public String getCourseCode() {
+		return courseCode;
+	}
 
-    public String getAddress3() {
-        return address3;
-    }
+	public void setCourseCode(String courseCode) {
+		this.courseCode = courseCode;
+	}
 
-    public void setAddress3(String address3) {
-        this.address3 = address3;
-    }
+	public String getTelephone() {
+		return telephone;
+	}
 
-    public String getAddress4() {
-        return address4;
-    }
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
 
-    public void setAddress4(String address4) {
-        this.address4 = address4;
-    }
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public String getZipCode() {
+		return zipCode;
+	}
 
-    public String getDelFlg() {
-        return delFlg;
-    }
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
 
-    public void setDelFlg(String delFlg) {
-        this.delFlg = delFlg;
+	public String getAddress1() {
+		return address1;
+	}
+
+	public void setAddress1(String address1) {
+		this.address1 = address1;
+	}
+
+	public String getAddress2() {
+		return address2;
+	}
+
+	public void setAddress2(String address2) {
+		this.address2 = address2;
+	}
+
+	public String getAddress3() {
+		return address3;
+	}
+
+	public void setAddress3(String address3) {
+		this.address3 = address3;
+	}
+
+	public String getAddress4() {
+		return address4;
+	}
+
+	public void setAddress4(String address4) {
+		this.address4 = address4;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getDelFlg() {
+		return delFlg;
+	}
+
+	public void setDelFlg(String delFlg) {
+		this.delFlg = delFlg;
+	}
+
+   
+    
+
+    
+
+
     }
-}
 

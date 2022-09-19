@@ -25,7 +25,6 @@ public class RouteServiceImpl implements RouteService {
 		List<RouteReponse> routeReponses = routeDao.getRouteCodeName();
 
 		return new ResultBean(routeReponses, "200", "OK");
-
 	}
 
 }

@@ -1,23 +1,32 @@
 package com.example.vimash.utils;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import org.jetbrains.annotations.NotNull;
-
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.jetbrains.annotations.NotNull;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
 public class DataUtil {
 
 
     public static boolean isEmpty(String value) {
+
         if (null == value || 0 == value.length()) {
+
+        if (null == value || 0 == value.trim().length()) {
+
             return true;
         }
-        return false;
+       
+        }
+		return false;
     }
 
     public static void checkSearchCustomer(String name,String code) throws ApiValidateException{
@@ -88,6 +97,21 @@ public class DataUtil {
         return matcher.matches();
     }
 
+
+    public static String decodeURL(String url) {
+        if (isEmpty(url)) {
+            return url;
+        }
+        try {
+            if (DataUtil.isEmpty(url)) {
+                return null;
+            }
+            return URLDecoder.decode(url, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            return url;
+        }
+    }
+
     public static boolean isInterger(String value){
         try {
             Integer.parseInt(value);
@@ -103,5 +127,25 @@ public class DataUtil {
         Pattern pattern = Pattern.compile(sPattern);
         Matcher matcher = pattern.matcher(value);
         return matcher.matches();
+    }
+
+
+    public static Integer getJsonInteger(JsonObject json, String memberName) {
+        return getJsonInteger(json, memberName, null);
+    }
+
+    /**
+     * Get data to JSON, return Integer
+     * @return Integer
+     */
+    public static Integer getJsonInteger(JsonObject json, String memberName, Integer defaultValue) {
+        if (!json.has(memberName) || json.get(memberName).isJsonNull()) {
+            return defaultValue;
+        }
+        try {
+            return json.get(memberName).getAsInt();
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 }

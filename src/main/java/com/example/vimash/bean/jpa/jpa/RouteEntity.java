@@ -21,14 +21,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 
 @Entity
-@Table(name = "m_route")
-public class RouteEntiry implements Serializable {
+@Table(name= "m_route")
+public class RouteEntity implements Serializable {
 
-	// Route Code
-	@Id
-	@Column(name = "route_code")
-	@JsonProperty(value = "routeCode")
-	private String routeCode;
+    //Route Code
+    @Id
+    @Column(name = "route_code")
+    @JsonProperty(value="routeCode")
+    private String routeCode;
+
 
 	// Company Id
 	@Column(name = "company_id")
@@ -50,55 +51,32 @@ public class RouteEntiry implements Serializable {
 	@JsonProperty(value = "delFlg")
 	private String delFlg;
 
+
 	// Create By
 	@Column(name = "create_by")
 	@JsonProperty("createBy")
 	private Integer createBy;
 
+   
 	// Create Date
 	@Column(name = "create_date")
 	@JsonProperty("createDate")
 	private Date createDate;
 
-	// Update By
-	@Column(name = "update_by")
-	@JsonProperty("updateBy")
-	private Integer updateBy;
+
+    //Update By
+    @Column(name = "update_by")
+    @JsonProperty("updateBy")
+    private Integer updateBy;
+
 
 	// Update Date
 	@Column(name = "update_date")
 	@JsonProperty("updateDate")
 	private Date updateDate;
 
-	public RouteEntiry() {
-	}
+	
 
-	// Contructor có Id
-	public RouteEntiry(String routeCode, Long companyId, String routeName, String notes, String delFlg,
-			Integer createBy, Date createDate, Integer updateBy, Date updateDate) {
-		this.routeCode = routeCode;
-		this.companyId = companyId;
-		this.routeName = routeName;
-		this.notes = notes;
-		this.delFlg = delFlg;
-		this.createBy = createBy;
-		this.createDate = createDate;
-		this.updateBy = updateBy;
-		this.updateDate = updateDate;
-	}
-
-	// Contructor không có Id
-	public RouteEntiry(Long companyId, String routeName, String notes, String delFlg, Integer createBy, Date createDate,
-			Integer updateBy, Date updateDate) {
-		this.companyId = companyId;
-		this.routeName = routeName;
-		this.notes = notes;
-		this.delFlg = delFlg;
-		this.createBy = createBy;
-		this.createDate = createDate;
-		this.updateBy = updateBy;
-		this.updateDate = updateDate;
-	}
 
 	public String getRouteCode() {
 		return routeCode;
@@ -108,18 +86,76 @@ public class RouteEntiry implements Serializable {
 //		this.routeCode = routeCode;
 //	}
 
-	public void setRouteId(String routeCode) {
-		this.routeCode = routeCode;
+    public RouteEntity() {
+    }
+
+    
+    
+
+    
+    /**
+ * @param routeCode
+ * @param companyId
+ * @param routeName
+ * @param notes
+ * @param delFlg
+ * @param createBy
+ * @param createDate
+ * @param updateBy
+ * @param updateDate
+ */
+public RouteEntity(String routeCode, Long companyId, String routeName, String notes, String delFlg, Integer createBy,
+		Date createDate, Integer updateBy, Date updateDate) {
+	super();
+	this.routeCode = routeCode;
+	this.companyId = companyId;
+	this.routeName = routeName;
+	this.notes = notes;
+	this.delFlg = delFlg;
+	this.createBy = createBy;
+	this.createDate = createDate;
+	this.updateBy = updateBy;
+	this.updateDate = updateDate;
+}
+
+	
+    
+	/**
+	 * @param companyId
+	 * @param routeName
+	 * @param notes
+	 * @param delFlg
+	 * @param createBy
+	 * @param createDate
+	 * @param updateBy
+	 * @param updateDate
+	 */
+	public RouteEntity(Long companyId, String routeName, String notes, String delFlg, Integer createBy, Date createDate,
+			Integer updateBy, Date updateDate) {
+		super();
+		this.companyId = companyId;
+		this.routeName = routeName;
+		this.notes = notes;
+		this.delFlg = delFlg;
+		this.createBy = createBy;
+		this.createDate = createDate;
+		this.updateBy = updateBy;
+		this.updateDate = updateDate;
 	}
+	
 
 	/**
 	 * @param routeCode
 	 * @param routeName
 	 */
-	public RouteEntiry(String routeCode, String routeName) {
+	public RouteEntity(String routeCode, String routeName) {
+		super();
 		this.routeCode = routeCode;
 		this.routeName = routeName;
 	}
+	
+	/*
+	 * getter-setter all parameter */
 
 	public Long getCompanyId() {
 		return companyId;
@@ -184,4 +220,13 @@ public class RouteEntiry implements Serializable {
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
 	}
+
+	public void setRouteCode(String routeCode) {
+		this.routeCode = routeCode;
+	}
+
+    
 }
+
+
+

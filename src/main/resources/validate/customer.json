@@ -15,20 +15,36 @@
     {
       "id": "createDate",
       "required": "0",
+<<<<<<< HEAD
       "maxLength": 7,
       "isDateTime": true
+=======
+<<<<<<< HEAD
+      "maxLength": 10
+=======
+      "isDateTime": true
+>>>>>>> c6b323b76622e931dd193f37698fd2a333c9cb6d
+>>>>>>> a6f2fc0ef6a5af9286652484117fe51609ed2c82
     },
     {
       "id": "updateBy",
       "required": "0",
+<<<<<<< HEAD
       "maxLength": 6,
+=======
+      "maxLength": 10,
+>>>>>>> a6f2fc0ef6a5af9286652484117fe51609ed2c82
       "number": "\\d+"
     },
     {
       "id": "updateDate",
       "required": "0",
+<<<<<<< HEAD
       "maxLength": 7,
       "isDateTime": true
+=======
+      "maxLength": 10
+>>>>>>> a6f2fc0ef6a5af9286652484117fe51609ed2c82
     },
     {
       "id": "routeCode",

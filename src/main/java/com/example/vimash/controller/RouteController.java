@@ -24,10 +24,11 @@ public class RouteController {
 		ResultBean resultBean = null;
 		try {
 			resultBean = routeService.getRouteCode();
+			
 		} catch (ApiValidateException e) {
 			 resultBean = new ResultBean(e.getCode(), e.getField(), e.getMessage());
+			 
 		} catch (Exception e) {
-
             resultBean = new ResultBean(Constants.STATUS_SYSTEM_ERROR, Constants.MESSAGE_SYSTEM_ERROR);
             return new ResponseEntity<ResultBean>(resultBean, HttpStatus.BAD_REQUEST);
         }

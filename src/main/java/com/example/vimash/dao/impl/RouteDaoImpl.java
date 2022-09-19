@@ -7,7 +7,7 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
-import com.example.vimash.bean.jpa.jpa.RouteEntiry;
+import com.example.vimash.bean.jpa.jpa.RouteEntity;
 import com.example.vimash.bean.jpa.reponse.RouteReponse;
 import com.example.vimash.dao.AbtractBaseDao;
 import com.example.vimash.dao.RouteDao;
@@ -21,10 +21,10 @@ public class RouteDaoImpl extends AbtractBaseDao implements RouteDao  {
 	@Override
 	public List<RouteReponse> getRouteCodeName() {
 		StringBuilder sql = new StringBuilder();
-        sql.append(" Select r FROM  RouteEntiry r ");
-        TypedQuery<RouteEntiry> query = this.getEntityManager().createQuery(sql.toString(), RouteEntiry.class);
+        sql.append(" SELECT r FROM  RouteEntity r ");
+        TypedQuery<RouteEntity> query = this.getEntityManager().createQuery(sql.toString(), RouteEntity.class);
         
-        List<RouteEntiry> list = query.getResultList();
+        List<RouteEntity> list = query.getResultList();
         List<RouteReponse> routeReponses = new ArrayList<>();
         
         for(int i = 0; i < list.size(); i++) {

@@ -5,6 +5,6 @@ import com.example.vimash.utils.ApiValidateException;
 
 public interface RouteService {
 	
-	public ResultBean getRouteCode()throws ApiValidateException,Exception;
+	public ResultBean getRouteCode() throws ApiValidateException,Exception;
 
 }
