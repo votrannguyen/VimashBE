@@ -7,4 +7,8 @@ public interface CustomerService {
     public ResultBean getCustomer(Integer page, Integer size, String name, String code1, String code2) throws ApiValidateException,Exception;
 
     public ResultBean addCustomer(String company) throws ApiValidateException,Exception;
+
+    public ResultBean deleteSingleCustomer(Long id) throws ApiValidateException,Exception;
+
+    public ResultBean findSingleCustomer(Long id) throws ApiValidateException,Exception;
 }

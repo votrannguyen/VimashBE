@@ -2,6 +2,7 @@ package com.example.vimash.services.impl;
 
 import com.example.vimash.bean.jpa.ResultBean;
 import com.example.vimash.bean.jpa.jpa.CustomerEntity;
+import com.example.vimash.bean.jpa.jpa.response.CustomerDeliveryResponse;
 import com.example.vimash.bean.jpa.jpa.response.CustomerResponse;
 import com.example.vimash.bean.jpa.jpa.response.customer.CustomerIPageResponse;
 import com.example.vimash.bean.jpa.request.CustomerSearchListRequest;
@@ -19,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -62,5 +64,29 @@ public class CustomerServiceImpl implements CustomerService {
         JsonObject jsonObject = DataUtil.getJsonObject(company);
         ValidateData.validate(FILE_JSON_VALIDATE, jsonObject, false);
         return new ResultBean("200", "success", "success");
+    }
+
+    @Override
+    public ResultBean deleteSingleCustomer(Long id) throws ApiValidateException, Exception {
+        String message = customerDao.deleteSingleCustomer(id);
+        return new ResultBean("200", message);
+    }
+
+    @Override
+    public ResultBean findSingleCustomer(Long id) throws ApiValidateException, Exception {
+        Optional<CustomerEntity> customerEntity = customerDao.findCustomerById(id);
+
+        if(customerEntity.isEmpty()) {
+            return new ResultBean("this record don't exists", "404");
+        } else {
+            CustomerEntity customerEntity1 = customerEntity.get();
+            CustomerDeliveryResponse customerDeliveryResponse = new CustomerDeliveryResponse(customerEntity1.getCustomerId(),
+                    customerEntity1.getCustomerCode(), customerEntity1.getCustomerName(), customerEntity1.getPicName(),
+                    customerEntity1.getLeadTime(), customerEntity1.getRouteCode(), customerEntity1.getCourseCode(),
+                    customerEntity1.getDescription(), customerEntity1.getPhoneNumber(), customerEntity1.getFaxNumber(),
+                    customerEntity1.getPostCode(), customerEntity1.getAddress1(), customerEntity1.getAddress2(),
+                    customerEntity1.getAddress3(), customerEntity1.getAddress4());
+        return new ResultBean(customerDeliveryResponse, "200", "success");
+        }
     }
 }

@@ -1,7 +1,9 @@
 package com.example.vimash.controller;
 
 import com.example.vimash.bean.jpa.ResultBean;
+import com.example.vimash.services.CourseService;
 import com.example.vimash.services.CustomerService;
+import com.example.vimash.services.RouteService;
 import com.example.vimash.utils.ApiValidateException;
 import com.example.vimash.utils.Constants;
 import org.hibernate.annotations.Parameter;
@@ -18,6 +20,10 @@ public class CustomerController {
 
     @Resource
     private CustomerService customerService;
+    @Resource
+    private CourseService courseService;
+
+    // GET CUSTOMERS
     @RequestMapping(value = "/api/customers", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<ResultBean> getCustomer(@RequestParam(defaultValue = "1") Integer page,
                                                   @RequestParam(defaultValue = "10") Integer size,
@@ -39,6 +45,40 @@ public class CustomerController {
         return new ResponseEntity<ResultBean>(resultBean, HttpStatus.OK);
     }
 
+    // GET SINGER CUSTOMER
+    @RequestMapping(value = "/api/customer/{id}", method = RequestMethod.GET)
+    public ResponseEntity<ResultBean> getSingerCustomer(@PathVariable Long id) {
+        ResultBean resultBean = null;
+        try {
+            resultBean = customerService.findSingleCustomer(id);
+        } catch (ApiValidateException e) {
+            resultBean = new ResultBean(e.getCode(), e.getField(), e.getMessage());
+            return new ResponseEntity<ResultBean>(resultBean, HttpStatus.BAD_REQUEST);
+        }catch (Exception ex) {
+            resultBean = new ResultBean("304",null,ex.getMessage());
+            return new ResponseEntity<ResultBean>(resultBean, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<ResultBean>(resultBean, HttpStatus.OK);
+    };
+
+    // DELETE SINGLE CUSTOMER
+    @RequestMapping(value = "/api/customer/{id}", method = RequestMethod.DELETE, produces = { MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<ResultBean> deleteSingerCustomer(@PathVariable Long id) {
+        ResultBean resultBean = null;
+        try {
+        resultBean = customerService.deleteSingleCustomer(id);
+
+        } catch (ApiValidateException e) {
+            resultBean = new ResultBean(e.getCode(), e.getField(), e.getMessage());
+            return new ResponseEntity<ResultBean>(resultBean, HttpStatus.BAD_REQUEST);
+        }catch (Exception ex) {
+            resultBean = new ResultBean("304",null,ex.getMessage());
+            return new ResponseEntity<ResultBean>(resultBean, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<ResultBean>(resultBean, HttpStatus.OK);
+    };
+
+    // ADD SINGLE CUSTOMER
     @RequestMapping(value = "/api/customer", method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<ResultBean> addCustomer(@RequestBody  String jsonCustomer){
         ResultBean resultBean = null;
@@ -52,6 +92,20 @@ public class CustomerController {
         }catch (Exception ex) {
             resultBean = new ResultBean(null,null,ex.getMessage());
             return new ResponseEntity<ResultBean>(resultBean, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<ResultBean>(resultBean, HttpStatus.OK);
+    }
+
+
+    @RequestMapping(value = "/api/courses", method = RequestMethod.GET)
+    public ResponseEntity<ResultBean> getAllCourse() {
+
+        ResultBean resultBean = null;
+        try {
+            resultBean = courseService.getAll();
+        } catch (Exception e) {
+            resultBean = new ResultBean("404", "error");
+            return new ResponseEntity<ResultBean>(resultBean, HttpStatus.valueOf("4044"));
         }
         return new ResponseEntity<ResultBean>(resultBean, HttpStatus.OK);
     }
