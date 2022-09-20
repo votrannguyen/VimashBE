@@ -109,7 +109,7 @@ public class CustomerDaoImpl extends AbstractBaseDao implements CustomerDao {
         }
     }
     @Override
-    public void findByCustomerCode(String customerCode) throws ApiValidateException{
+    public void checkCustomerCode(String customerCode) throws ApiValidateException{
         List<CustomerEntity> companyList =null;
         Query query =  entityManager.createQuery("select c from CustomerEntity c where del_flg = 0 and customer_code = '"+customerCode+"' ",CustomerEntity.class);
 

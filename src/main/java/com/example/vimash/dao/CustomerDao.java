@@ -16,7 +16,7 @@ public interface CustomerDao {
 
     public void updateCustomer(CustomerEntity customerEntity) throws ApiValidateException,Exception;
 
-    public void findByCustomerCode(String customerCode) throws ApiValidateException,Exception;
+    public void checkCustomerCode(String customerCode) throws ApiValidateException,Exception;
 
     public void deleteCustomer(Integer id) throws ApiValidateException,Exception;
 

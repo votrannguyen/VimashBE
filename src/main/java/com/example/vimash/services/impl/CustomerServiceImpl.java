@@ -36,7 +36,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public ResultBean findByCustomerCode(String code) throws ApiValidateException, Exception {
-        customerDao.findByCustomerCode(code);
+        customerDao.checkCustomerCode(code);
         return new ResultBean(code, Constants.STATUS_OK, Constants.MESSAGE_OK);
     }
 
@@ -48,9 +48,8 @@ public class CustomerServiceImpl implements CustomerService {
         ValidateData.validate(FILE_JSON_VALIDATE, jsonObject, false);
 
         customerEntity = getCustomerEntity(jsonObject,customerEntity);
-        customerEntity.setCompanyId(Long.valueOf(4));
-        customerEntity.setUpdateDate(null);
-        customerDao.findByCustomerCode(customerEntity.getCustomerCode());
+
+        customerDao.checkCustomerCode(customerEntity.getCustomerCode());
 
         customerDao.addCustomer(customerEntity);
 
@@ -65,15 +64,13 @@ public class CustomerServiceImpl implements CustomerService {
         ValidateData.validate(FILE_JSON_VALIDATE, jsonObject, false);
 
         customerEntity = getCustomerEntity(jsonObject,customerEntity);
-        customerEntity.setCompanyId(Long.valueOf(4));
-        customerEntity.setUpdateDate(null);
 
 
         try{
-            CustomerResponse customerResponse = customerDao.finByIdCustomer(Integer.parseInt(String.valueOf(customerEntity.getCustomerId())));
+            CustomerResponse customerResponse = customerDao.finByIdCustomer(Math.toIntExact(customerEntity.getCustomerId()));
             customerEntity.setCreateDate(customerResponse.getCreateDate());
         }catch (Exception e){
-            return new ResultBean("customerEntity", Constants.STATUS_SYSTEM_ERROR, Constants.MESSAGE_OK);
+            return new ResultBean("Customer khong ton tai", Constants.STATUS_SYSTEM_ERROR, Constants.MESSAGE_OK);
         }
 
         customerDao.updateCustomer(customerEntity);
