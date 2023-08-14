@@ -15,11 +15,8 @@
     {
       "id": "createDate",
       "required": "0",
-<<<<<<< HEAD
-      "maxLength": 10
-=======
+      "maxLength": 10,
       "isDateTime": true
->>>>>>> c6b323b76622e931dd193f37698fd2a333c9cb6d
     },
     {
       "id": "updateBy",

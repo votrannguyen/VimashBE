@@ -22,12 +22,17 @@ import java.util.Date;
 @Table(name= "m_route")
 public class RouteEntity implements Serializable {
 
-    //Route Code
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7691880476455714602L;
 
+	//Route Code
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "route_code")
     @JsonProperty(value="routeCode")
-    private String routeCode;
+    private Integer routeCode;
 
     //Company Id
     @Column(name = "company_id")
@@ -73,7 +78,7 @@ public class RouteEntity implements Serializable {
     }
 
     //Contructor có Id
-    public RouteEntity(String routeCode, Long companyId, String routeName, String notes, String delFlg, Integer createBy,
+    public RouteEntity(Integer routeCode, Long companyId, String routeName, String notes, String delFlg, Integer createBy,
                        Date createDate, Integer updateBy, Date updateDate) {
         this.routeCode = routeCode;
         this.companyId = companyId;
@@ -99,11 +104,11 @@ public class RouteEntity implements Serializable {
         this.updateDate = updateDate;
     }
 
-    public String getRouteCode() {
+    public Integer getRouteCode() {
         return routeCode;
     }
 
-    public void setRouteId(String routeCode) {
+    public void setRouteId(Integer routeCode) {
         this.routeCode = routeCode;
     }
 

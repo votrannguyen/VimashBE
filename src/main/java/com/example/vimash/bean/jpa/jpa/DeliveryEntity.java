@@ -21,7 +21,12 @@ import java.util.Date;
 @Table(name = "m_delivery")
 public class DeliveryEntity implements Serializable {
 
-    //User Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2364816634467669407L;
+
+	//User Id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "delivery_id")

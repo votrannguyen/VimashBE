@@ -10,12 +10,17 @@ import java.util.Date;
 @Table(name= "m_course")
 public class CourseEntity implements Serializable {
 
-    //Route Code
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8272902425374331095L;
 
+	//Route Code
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "course_code")
     @JsonProperty(value="courseCode")
-    private String courseCode;
+    private Integer courseCode;
 
     //Company Id
     @Column(name = "company_id")
@@ -66,7 +71,7 @@ public class CourseEntity implements Serializable {
     }
 
     //Contrutor có Id
-    public CourseEntity(String courseCode, Long companyId, String routeCode, String courseName, String notes, String delFlg,
+    public CourseEntity(Integer courseCode, Long companyId, String routeCode, String courseName, String notes, String delFlg,
                         Integer createBy, Date createDate, Integer updateBy, Date updateDate) {
         this.courseCode = courseCode;
         this.companyId = companyId;
@@ -94,11 +99,11 @@ public class CourseEntity implements Serializable {
         this.updateDate = updateDate;
     }
 
-    public String getCourseCode() {
+    public Integer getCourseCode() {
         return courseCode;
     }
 
-    public void setCourseCode(String courseCode) {
+    public void setCourseCode(Integer courseCode) {
         this.courseCode = courseCode;
     }
 

@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
-@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
 public class CustomerController {
 
     @Resource
     private CustomerService customerService;
-    @RequestMapping(value = "/api/customer", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
+    
+    @RequestMapping(value = "/api/customers", method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<ResultBean> getCustomer(
             @RequestParam (defaultValue = "") String name
             ,@RequestParam (defaultValue = "") String code1

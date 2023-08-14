@@ -1,10 +1,15 @@
 package com.example.vimash.services.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.example.vimash.bean.jpa.ResultBean;
 import com.example.vimash.bean.jpa.jpa.CustomerEntity;
 import com.example.vimash.bean.jpa.jpa.response.CustomerResponse;
-import com.example.vimash.bean.jpa.jpa.response.customer.CustomerIPageResponse;
-import com.example.vimash.bean.jpa.request.CustomerSearchListRequest;
 import com.example.vimash.dao.CustomerDao;
 import com.example.vimash.services.CustomerService;
 import com.example.vimash.utils.ApiValidateException;
@@ -12,14 +17,6 @@ import com.example.vimash.utils.Constants;
 import com.example.vimash.utils.DataUtil;
 import com.example.vimash.utils.ValidateData;
 import com.google.gson.JsonObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 @Transactional(rollbackFor = { ApiValidateException.class, Exception.class })

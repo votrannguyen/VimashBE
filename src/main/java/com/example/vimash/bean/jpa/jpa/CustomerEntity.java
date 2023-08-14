@@ -20,9 +20,14 @@ import java.util.Date;
 
 @Entity
 @Table(name = "m_customer")
-public class CustomerEntity<c6b323b76622e931dd193f37698fd2a333c9cb6d> implements Serializable {
+public class CustomerEntity implements Serializable {
 
-    //Customer Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3557872559555448453L;
+
+	//Customer Id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
